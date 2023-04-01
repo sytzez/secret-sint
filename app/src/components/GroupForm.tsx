@@ -45,7 +45,7 @@ export default function GroupForm({
         id="title"
         name="title"
         placeholder="The name of the group"
-        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
+        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
       <button

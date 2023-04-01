@@ -22,14 +22,20 @@ export default function NewGroup() {
   }
 
   return (
-    <>
-      <h1 className="text-white text-2xl font-bold mb-4">New group</h1>
+    <div className="flex gap-2 flex-col">
+      <h1 className="text-white text-2xl font-bold mb-2">New group</h1>
       <GroupForm
         submitLabel="Create group"
         onSubmit={onSubmit}
         isLoading={isLoading}
       />
-      <p className="my-4 text-white">{error}</p>
-    </>
+      {error && <p className="my-4 text-white">{error}</p>}
+      <button
+        className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+        onClick={() => navigate('/groups')}
+      >
+        Back to all groups
+      </button>
+    </div>
   )
 }

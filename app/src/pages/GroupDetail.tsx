@@ -42,7 +42,7 @@ export default function GroupDetail() {
         {group.users.map((user) => (
           <li
             key={user.email}
-            className="text-yellow-200 text-center border-b border-b-white last:border-b-0 p-2"
+            className="text-yellow-200 text-center border-b-2 border-b-red-700 last:border-b-0 p-4"
           >
             {user.email}
           </li>
@@ -83,7 +83,7 @@ export default function GroupDetail() {
           </p>
           <button
             className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
-            onClick={() => navigate('groups')}
+            onClick={() => navigate('/groups')}
           >
             Back to all groups
           </button>

@@ -34,9 +34,6 @@ export default function WishlistForm({
       }}
       className="flex gap-2 flex-col"
     >
-      <label htmlFor="wishlist" className="text-white">
-        Wishlist
-      </label>
       <textarea
         required
         id="wishlist"
@@ -51,7 +48,7 @@ export default function WishlistForm({
         className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
       >
-        {isLoading ? '...' : 'Save'}
+        {isLoading ? '...' : 'Save wishlist'}
       </button>
     </form>
   )

@@ -44,7 +44,7 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         id="email"
         name="email"
         placeholder="Your email address"
-        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
+        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
       <label htmlFor="password" className="text-white">
@@ -57,7 +57,7 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         id="password"
         name="password"
         placeholder="Your password"
-        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
+        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
       <button

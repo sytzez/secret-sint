@@ -53,7 +53,7 @@ export default function YourWishlist() {
         className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate(`/groups/${groupId}`)}
       >
-        Back to group
+        Cancel
       </button>
     </div>
   )
