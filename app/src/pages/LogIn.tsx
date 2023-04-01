@@ -2,9 +2,11 @@ import { useContext, useState } from "react";
 import { ApiContext } from "../contexts/api-context";
 import LogInForm from "../components/LogInForm";
 import { LogInRequest } from "../schemata/log-in-request";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn() {
   const api = useContext(ApiContext)
+  const navigate = useNavigate()
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -12,6 +14,7 @@ export default function LogIn() {
     setLoading(true)
     try {
       await api.logIn(request)
+      navigate('/groups')
     } catch(e: { message: string }) {
       setError(e.message)
     }

@@ -2,9 +2,11 @@ import SignUpForm from '../components/SignUpForm'
 import { useContext, useState } from "react";
 import { ApiContext } from "../contexts/api-context";
 import { SignUpRequest } from "../schemata/sign-up-request";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const api = useContext(ApiContext)
+  const navigate = useNavigate()
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -12,6 +14,7 @@ export default function SignUp() {
     setLoading(true)
     try {
       await api.signUp(request)
+      navigate('/groups')
     } catch(e: { message: string }) {
       setError(e.message)
     }

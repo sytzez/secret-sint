@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_184936) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_01_151116) do
   create_table "groups", force: :cascade do |t|
     t.string "title"
     t.boolean "has_started"
     t.date "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.integer "assigned_user_id"
+    t.string "wishlist"
+    t.integer "present_status"
+    t.datetime "eta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assigned_user_id"], name: "index_participations_on_assigned_user_id"
+    t.index ["group_id"], name: "index_participations_on_group_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,4 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_184936) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "participations", "groups"
+  add_foreign_key "participations", "users"
+  add_foreign_key "participations", "users", column: "assigned_user_id"
 end

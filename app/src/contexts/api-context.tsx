@@ -2,27 +2,29 @@ import { createContext, ReactNode, useContext } from "react";
 import { AuthContext } from "./auth-context";
 import { SignUpRequest } from "../schemata/sign-up-request";
 import { LogInRequest } from "../schemata/log-in-request";
+import { Group, groupSchema } from "../schemata/group";
 
 export interface Api {
   signUp: (request: SignUpRequest) => void
   logIn: (request: LogInRequest) => void
+  groups: () => Promise<Group[]>
 }
 
 export const ApiContext = createContext(null as unknown as Api)
 
-const API_BASE = 'http://localhost:3000'
+const API_BASE = 'http://127.0.0.1:3000'
 
 export function ApiContextProvider({ children }: { children: ReactNode }) {
   const [authState, setAuthState] = useContext(AuthContext)
 
-  const post = (route: string, body: object) => (
+  const apiRequest = (method: 'POST' | 'GET') => (route: string, body: object | null = null) => (
     fetch(`${API_BASE}/${route}`, {
-      method: 'POST',
+      method,
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: body ? JSON.stringify(body) : undefined,
       credentials: 'include',
     })
       .then((response) => response.json())
@@ -41,6 +43,9 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       })
   )
 
+  const post = apiRequest('POST')
+  const get = apiRequest('GET')
+
   const api: Api = {
     signUp: async (request: SignUpRequest) => {
       const response = await post('signup', { user: request })
@@ -50,6 +55,10 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       const response = await post('login', { user: request })
       setAuthState({ userId: response.data.id })
     },
+    groups: async () => {
+      const response = await get('groups')
+      return response.data.map((group: object) => groupSchema.parse(group))
+    }
   }
 
   return (
