@@ -1,6 +1,27 @@
-export default function SignUpForm() {
+import { SignUpRequest, signUpRequestSchema } from "../schemata/sign-up-request";
+
+export default function SignUpForm({ onSubmit }: { onSubmit: (data: SignUpRequest) => void }) {
   return (
-    <form className="flex gap-2 flex-col">
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+
+        const form = event.target as unknown as { email: HTMLInputElement, password: HTMLInputElement }
+
+        const formData = {
+          email: form.email.value,
+          password: form.password.value,
+        }
+
+        try {
+          const signUpRequest = signUpRequestSchema.parse(formData)
+          onSubmit(signUpRequest)
+        } catch (e) {
+          console.error(e)
+        }
+      }}
+      className="flex gap-2 flex-col"
+    >
       <label
         htmlFor="email"
         className="text-white"
@@ -30,6 +51,7 @@ export default function SignUpForm() {
         name="password"
         placeholder="Your password"
         className="bg-white rounded-full px-4 py-2"
+        minLength={8}
       />
       <button
         type="submit"

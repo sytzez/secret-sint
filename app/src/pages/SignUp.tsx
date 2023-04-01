@@ -2,6 +2,8 @@ import SignUpForm from '../components/SignUpForm'
 
 export default function SignUp() {
   return (
-    <SignUpForm />
+    <div className="max-w-lg m-auto">
+      <SignUpForm onSubmit={console.log} />
+    </div>
   )
 }
