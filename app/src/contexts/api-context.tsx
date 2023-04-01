@@ -1,9 +1,11 @@
 import { createContext, ReactNode, useContext } from "react";
 import { AuthContext } from "./auth-context";
 import { SignUpRequest } from "../schemata/sign-up-request";
+import { LogInRequest } from "../schemata/log-in-request";
 
-export type Api = {
+export interface Api {
   signUp: (request: SignUpRequest) => void
+  logIn: (request: LogInRequest) => void
 }
 
 export const ApiContext = createContext(null as unknown as Api)
@@ -28,18 +30,26 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
         console.error(e)
         throw new Error('Something went wrong, try again later')
       })
+      .then((response) => {
+        if (response.error) {
+          throw new Error(response.error)
+        }
+        if (! response.success) {
+          throw new Error(response.message)
+        }
+        return response
+      })
   )
 
   const api: Api = {
     signUp: async (request: SignUpRequest) => {
       const response = await post('signup', { user: request })
-
-      if (! response.success) {
-        throw new Error(response.message)
-      }
-
       setAuthState({ userId: response.data.id })
-    }
+    },
+    logIn: async (request: LogInRequest) => {
+      const response = await post('login', { user: request })
+      setAuthState({ userId: response.data.id })
+    },
   }
 
   return (
