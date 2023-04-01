@@ -1,8 +1,8 @@
 ## Data model
 
 - User
-  - groups: hasManyThrough groupUser
-- GroupUser
+  - groups: hasManyThrough participations
+- Participation
   - user: belongsTo
   - group: belongsTo
   - wishlist: string (nullable)
@@ -10,7 +10,7 @@
   - presentStatus (nullable)
   - eta: date (nullable)
 - Group
-  - users: hasManyThrough groupUser
+  - users: hasManyThrough participations
   - title: string
   - has_started: bool (Once group has started, new users can't be added)
   - deadline: date
