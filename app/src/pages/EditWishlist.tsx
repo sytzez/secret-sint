@@ -1,9 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { ApiContext } from "../contexts/api-context";
-import WishlistForm from "../components/WishlistForm";
-import { Participation } from "../schemata/participation";
-import { ParticipationRequest } from "../schemata/participation-request";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { ApiContext } from '../contexts/api-context'
+import WishlistForm from '../components/WishlistForm'
+import { Participation } from '../schemata/participation'
+import { ParticipationRequest } from '../schemata/participation-request'
 
 export default function YourWishlist() {
   const api = useContext(ApiContext)
@@ -40,7 +40,9 @@ export default function YourWishlist() {
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-white text-2xl font-bold mb-2">Your wishlist</h1>
-      <p className="text-white mb-2">Your wishlist will only be visible to your Secret Sint.</p>
+      <p className="text-white mb-2">
+        Your wishlist will only be visible to your Secret Sint.
+      </p>
       <WishlistForm
         onSubmit={onSubmit}
         isLoading={isLoading}

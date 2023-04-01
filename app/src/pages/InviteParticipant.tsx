@@ -27,7 +27,9 @@ export default function InviteParticipant() {
       <h1 className="text-white text-2xl font-bold mb-2">
         Invite a participant
       </h1>
-      <p className="mb-4 text-white">You can invite participants once they have registered with the platform.</p>
+      <p className="mb-4 text-white">
+        You can invite participants once they have registered with the platform.
+      </p>
       <InviteForm onSubmit={onSubmit} isLoading={isLoading} />
       {error && <p className="my-4 text-white">{error}</p>}
       <button

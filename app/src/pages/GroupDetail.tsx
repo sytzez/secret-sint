@@ -30,7 +30,7 @@ export default function GroupDetail() {
         className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mb-2"
         onClick={() => navigate(`/groups/${group.id}/wishlist`)}
       >
-         Edit your wishlist
+        Edit your wishlist
       </button>
       <h2 className="text-white text-lg font-bold">Participants</h2>
       <ul>

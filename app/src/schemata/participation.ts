@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { userSchema } from "./user";
-import { presentStatusSchema } from "./present-status";
+import { userSchema } from './user'
+import { presentStatusSchema } from './present-status'
 
 export const participationSchema = z.object({
   wishlist: z.string().nullish(),

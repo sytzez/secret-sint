@@ -4,7 +4,7 @@ import { LogInRequest } from '../schemata/log-in-request'
 import { Group, groupSchema } from '../schemata/group'
 import { GroupRequest } from '../schemata/group-request'
 import { InviteRequest } from '../schemata/invite-request'
-import { Participation, participationSchema } from "../schemata/participation";
+import { Participation, participationSchema } from '../schemata/participation'
 
 export interface Api {
   signUp: (request: SignUpRequest) => Promise<void>
@@ -86,8 +86,10 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       return participationSchema.parse(response.data)
     },
     updateParticipation: async (groupId, request) => {
-      await patch(`groups/${groupId}/participations/own`, { participation: request })
-    }
+      await patch(`groups/${groupId}/participations/own`, {
+        participation: request,
+      })
+    },
   }
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>

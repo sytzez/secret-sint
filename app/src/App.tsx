@@ -1,11 +1,11 @@
 import SignUp from './pages/SignUp'
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import LogIn from './pages/LogIn'
 import Groups from './pages/Groups'
 import NewGroup from './pages/NewGroup'
 import GroupDetail from './pages/GroupDetail'
 import InviteParticipant from './pages/InviteParticipant'
-import YourWishlist from "./pages/EditWishlist";
+import YourWishlist from './pages/EditWishlist'
 
 function App() {
   return (
@@ -22,10 +22,7 @@ function App() {
             path="/groups/:groupId/invite"
             element={<InviteParticipant />}
           />
-          <Route
-            path="/groups/:groupId/wishlist"
-            element={<YourWishlist />}
-          />
+          <Route path="/groups/:groupId/wishlist" element={<YourWishlist />} />
         </Routes>
       </BrowserRouter>
     </div>
