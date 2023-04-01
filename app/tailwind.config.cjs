@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'sans': ['Varela Round', 'sans-serif']
-    }
+      sans: ['Varela Round', 'sans-serif'],
+    },
   },
   plugins: [],
 }

@@ -1,10 +1,12 @@
-import { createContext, Dispatch, ReactNode, useState } from "react";
+import { createContext, Dispatch, ReactNode, useState } from 'react'
 
 export interface AuthState {
   userId: number | null
 }
 
-export const AuthContext = createContext<[AuthState, Dispatch<AuthState>]>(null as unknown as [AuthState, Dispatch<AuthState>])
+export const AuthContext = createContext<[AuthState, Dispatch<AuthState>]>(
+  null as unknown as [AuthState, Dispatch<AuthState>],
+)
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   const localState = localStorage.getItem('auth-state')
@@ -13,8 +15,6 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   const authState = useState<AuthState>(initialState as AuthState)
 
   return (
-    <AuthContext.Provider value={authState}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authState}>{children}</AuthContext.Provider>
   )
 }

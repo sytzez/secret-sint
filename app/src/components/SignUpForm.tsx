@@ -1,8 +1,8 @@
-import { SignUpRequest, signUpRequestSchema } from "../schemata/sign-up-request";
+import { SignUpRequest, signUpRequestSchema } from '../schemata/sign-up-request'
 
 export interface SignUpFormProps {
-  onSubmit: (data: SignUpRequest) => void,
-  isLoading: boolean,
+  onSubmit: (data: SignUpRequest) => void
+  isLoading: boolean
 }
 
 export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
@@ -15,7 +15,10 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
           return
         }
 
-        const form = event.target as unknown as { email: HTMLInputElement, password: HTMLInputElement }
+        const form = event.target as unknown as {
+          email: HTMLInputElement
+          password: HTMLInputElement
+        }
 
         const formData = {
           email: form.email.value,
@@ -31,11 +34,8 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
       }}
       className="flex gap-2 flex-col"
     >
-      <label
-        htmlFor="email"
-        className="text-white"
-      >
-        Email:
+      <label htmlFor="email" className="text-white">
+        Email
       </label>
       <input
         required
@@ -47,11 +47,8 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
-      <label
-        htmlFor="password"
-        className="text-white"
-      >
-        Password:
+      <label htmlFor="password" className="text-white">
+        Password
       </label>
       <input
         required
@@ -69,7 +66,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
       >
-        { isLoading ? '...' : 'Sign up' }
+        {isLoading ? '...' : 'Sign up'}
       </button>
     </form>
   )

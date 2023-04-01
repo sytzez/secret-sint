@@ -1,8 +1,8 @@
-import { LogInRequest, logInRequestSchema } from "../schemata/log-in-request";
+import { LogInRequest, logInRequestSchema } from '../schemata/log-in-request'
 
 export interface LogInFormProps {
-  onSubmit: (data: LogInRequest) => void,
-  isLoading: boolean,
+  onSubmit: (data: LogInRequest) => void
+  isLoading: boolean
 }
 
 export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
@@ -15,7 +15,10 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
           return
         }
 
-        const form = event.target as unknown as { email: HTMLInputElement, password: HTMLInputElement }
+        const form = event.target as unknown as {
+          email: HTMLInputElement
+          password: HTMLInputElement
+        }
 
         const formData = {
           email: form.email.value,
@@ -31,11 +34,8 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
       }}
       className="flex gap-2 flex-col"
     >
-      <label
-        htmlFor="email"
-        className="text-white"
-      >
-        Email:
+      <label htmlFor="email" className="text-white">
+        Email
       </label>
       <input
         required
@@ -47,11 +47,8 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
-      <label
-        htmlFor="password"
-        className="text-white"
-      >
-        Password:
+      <label htmlFor="password" className="text-white">
+        Password
       </label>
       <input
         required
@@ -68,7 +65,7 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
       >
-        { isLoading ? '...' : 'Log in' }
+        {isLoading ? '...' : 'Log in'}
       </button>
     </form>
   )
