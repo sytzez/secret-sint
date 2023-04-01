@@ -1,5 +1,5 @@
 import SignUp from './pages/SignUp'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LogIn from './pages/LogIn'
 import Groups from './pages/Groups'
 import NewGroup from './pages/NewGroup'
@@ -11,7 +11,7 @@ function App() {
     <div className="max-w-md m-auto py-8 px-2">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<p>Home</p>} />
+          <Route path="/" element={<Navigate to="/groups" />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/groups" element={<Groups />} />

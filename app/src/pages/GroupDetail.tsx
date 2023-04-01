@@ -12,7 +12,7 @@ export default function GroupDetail() {
 
   useEffect(() => {
     api
-      .group(parseInt(groupId))
+      .group(Number(groupId))
       .then(setGroup)
       .catch((e: { message: string }) => {
         setError(e.message)
@@ -50,14 +50,29 @@ export default function GroupDetail() {
           </button>
           <button
             type="button"
+            className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg"
+            onClick={console.log}
+          >
+            Edit wishlist
+          </button>
+          <button
+            type="button"
             className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg"
           >
             Assign Secret Sints!
           </button>
+          <p>TODO: wishlist, don't let them assign sints before everyone submitted their wishlist</p>
           <p className="text-white">
             Once the Secret Sints have been assigned, you can not invite any
             more participants.
           </p>
+          <button
+            type="button"
+            className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+            onClick={() => navigate('..')}
+          >
+            Back to all groups
+          </button>
         </>
       )}
     </div>

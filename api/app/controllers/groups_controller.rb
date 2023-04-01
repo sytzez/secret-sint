@@ -10,12 +10,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.has_started = false
-    @group.participations << Participation.new(
-      user: current_user,
-      present_status: 0,
-    )
+    @group = Group.new(group_params) do |g|
+      g.has_started = false
+      g.participations << Participation.new(
+        user: current_user,
+        present_status: 0,
+        )
+    end
 
     if @group.save
       render json: { success: true, data: @group }, status: :created, location: @group

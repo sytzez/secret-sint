@@ -12,7 +12,9 @@ export interface Api {
   groups: () => Promise<Group[]>
   createGroup: (request: GroupRequest) => Promise<Group>
   group: (id: number) => Promise<Group>
+  leaveGroup: (id: number) => Promise<void>
   invite: (groupId: number, request: InviteRequest) => Promise<void>
+  participation: (groupId: number) => Promise<void>
 }
 
 export const ApiContext = createContext(null as unknown as Api)
@@ -23,7 +25,7 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
   const [authState, setAuthState] = useContext(AuthContext)
 
   const apiRequest =
-    (method: 'POST' | 'GET') =>
+    (method: 'POST' | 'GET' | 'DELETE') =>
     (route: string, body: object | null = null) =>
       fetch(`${API_BASE}/${route}`, {
         method,
@@ -51,6 +53,7 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
 
   const post = apiRequest('POST')
   const get = apiRequest('GET')
+  const del = apiRequest('DELETE')
 
   const api: Api = {
     signUp: async (request) => {
@@ -73,9 +76,17 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       const response = await get(`groups/${id}`)
       return groupSchema.parse(response.data)
     },
-    invite: async (groupId, request) => {
-      await post(`/groups/${groupId}/invite`, { user: request })
+    leaveGroup: async (id: number) => {
+      await del(`groups/${id}/participations/own`)
     },
+    invite: async (groupId, request) => {
+      await post(`groups/${groupId}/participations`, { participation: request })
+    },
+    participation: async (groupId) => {
+      const response = get(`groups/${groupId}/participations/own`)
+      // TODO: parse
+    },
+
   }
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>

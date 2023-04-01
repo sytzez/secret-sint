@@ -14,7 +14,7 @@ export default function InviteParticipant() {
   const onSubmit = async (request: InviteRequest) => {
     setLoading(true)
     try {
-      await api.invite(parseInt(groupId), request)
+      await api.invite(Number(groupId), request)
       navigate('..')
     } catch (e) {
       setError(e.message)
@@ -24,11 +24,19 @@ export default function InviteParticipant() {
 
   return (
     <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-4">
+      <h1 className="text-white text-2xl font-bold mb-2">
         Invite a participant
       </h1>
+      <p className="mb-4 text-white">You can invite participants once they have registered with the platform.</p>
       <InviteForm onSubmit={onSubmit} isLoading={isLoading} />
-      <p className="my-4 text-white">{error}</p>
+      {error && <p className="my-4 text-white">{error}</p>}
+      <button
+        type="button"
+        className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+        onClick={() => navigate('..')}
+      >
+        Back to group
+      </button>
     </div>
   )
 }

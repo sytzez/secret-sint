@@ -25,7 +25,7 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
       className="flex gap-2 flex-col"
     >
       <label htmlFor="email" className="text-white">
-        Their email address
+        Email address
       </label>
       <input
         required
@@ -33,6 +33,7 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
         autoComplete="none"
         id="email"
         name="email"
+        placeholder="Their email address"
         className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
@@ -41,7 +42,7 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
         className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
       >
-        {isLoading ? '...' : 'Invite to group'}
+        {isLoading ? '...' : 'Invite'}
       </button>
     </form>
   )
