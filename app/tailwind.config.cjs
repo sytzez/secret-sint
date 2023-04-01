@@ -7,6 +7,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['Varela Round', 'sans-serif']
+    }
   },
   plugins: [],
 }

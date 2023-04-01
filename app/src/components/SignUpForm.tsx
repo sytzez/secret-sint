@@ -44,7 +44,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         id="email"
         name="email"
         placeholder="Your email address"
-        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300"
+        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
       <label
@@ -60,13 +60,13 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         id="password"
         name="password"
         placeholder="Your password"
-        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300"
+        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300 shadow-lg mb-2"
         minLength={8}
         disabled={isLoading}
       />
       <button
         type="submit"
-        className="rounded-full border text-white border-white border-solid p-4 hover:bg-red-700 mt-2"
+        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg"
         disabled={isLoading}
       >
         { isLoading ? '...' : 'Sign up' }

@@ -26,7 +26,7 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
   const api: Api = {
     signUp: async (request: SignUpRequest) => {
       try {
-        const response = await post('sign-up', { user: request })
+        const response = await post('signup', { user: request })
         console.log(response)
       } catch(e) {
         console.error(e)

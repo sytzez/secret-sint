@@ -16,7 +16,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="max-w-lg m-auto">
+    <div className="max-w-md m-auto">
       <SignUpForm onSubmit={onSubmit} isLoading={isLoading} />
     </div>
   )
