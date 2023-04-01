@@ -1,10 +1,19 @@
 import { SignUpRequest, signUpRequestSchema } from "../schemata/sign-up-request";
 
-export default function SignUpForm({ onSubmit }: { onSubmit: (data: SignUpRequest) => void }) {
+export interface SignUpFormProps {
+  onSubmit: (data: SignUpRequest) => void,
+  isLoading: boolean,
+}
+
+export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault()
+
+        if (isLoading) {
+          return
+        }
 
         const form = event.target as unknown as { email: HTMLInputElement, password: HTMLInputElement }
 
@@ -35,7 +44,8 @@ export default function SignUpForm({ onSubmit }: { onSubmit: (data: SignUpReques
         id="email"
         name="email"
         placeholder="Your email address"
-        className="bg-white rounded-full px-4 py-2"
+        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300"
+        disabled={isLoading}
       />
       <label
         htmlFor="password"
@@ -50,14 +60,16 @@ export default function SignUpForm({ onSubmit }: { onSubmit: (data: SignUpReques
         id="password"
         name="password"
         placeholder="Your password"
-        className="bg-white rounded-full px-4 py-2"
+        className="bg-white rounded-full px-4 py-2 disabled:bg-gray-300"
         minLength={8}
+        disabled={isLoading}
       />
       <button
         type="submit"
         className="rounded-full border text-white border-white border-solid p-4 hover:bg-red-700 mt-2"
+        disabled={isLoading}
       >
-        Sign up
+        { isLoading ? '...' : 'Sign up' }
       </button>
     </form>
   )
