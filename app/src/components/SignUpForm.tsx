@@ -66,7 +66,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
       />
       <button
         type="submit"
-        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg"
+        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
       >
         { isLoading ? '...' : 'Sign up' }

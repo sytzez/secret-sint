@@ -18,18 +18,20 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify(body),
     })
+      .then((response) => response.json())
   )
 
   const api: Api = {
     signUp: async (request: SignUpRequest) => {
-      try {
-        const response = await post('signup', { user: request })
-        console.log(response)
-      } catch(e) {
-        console.error(e)
+      const response = await post('signup', { user: request })
+        .catch((e) => { throw new Error(e.message) })
+
+      if (! response.success) {
+        throw new Error(response.message)
       }
     }
   }
