@@ -6,7 +6,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    render json: { success: true, data: @group }, include: ['users']
+    render json: { success: true, data: @group },
+           include: %i[users],
+           methods: %i[wishlist_count]
   end
 
   def create
@@ -14,12 +16,13 @@ class GroupsController < ApplicationController
       g.has_started = false
       g.participations << Participation.new(
         user: current_user,
-        present_status: 0,
+        present_status: 0
         )
     end
 
     if @group.save
-      render json: { success: true, data: @group }, status: :created, location: @group
+      render json: { success: true, data: @group },
+             status: :created
     else
       render json: { success: false, message: @group.errors.full_messages.join('. ') }, status: :unprocessable_entity
     end

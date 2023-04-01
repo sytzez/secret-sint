@@ -26,12 +26,18 @@ export default function GroupDetail() {
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-white text-2xl font-bold mb-4">{group.title}</h1>
-      <h2 className="text-white text-lg font-bold mb-2">Participants</h2>
-      <ul className="mb-4">
+      <button
+        className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mb-2"
+        onClick={() => navigate(`/groups/${group.id}/wishlist`)}
+      >
+         Edit your wishlist
+      </button>
+      <h2 className="text-white text-lg font-bold">Participants</h2>
+      <ul>
         {group.users.map((user) => (
           <li
             key={user.email}
-            className="text-white text-center border-b border-b-white last:border-b-0 p-2"
+            className="text-yellow-200 text-center border-b border-b-white last:border-b-0 p-2"
           >
             {user.email}
           </li>
@@ -43,33 +49,25 @@ export default function GroupDetail() {
         <>
           <button
             type="button"
-            className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg"
+            className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mb-2"
             onClick={() => navigate('./invite')}
           >
-            Invite participants
+            Add participants
           </button>
-          <button
-            type="button"
-            className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg"
-            onClick={console.log}
-          >
-            Edit wishlist
-          </button>
+          <h2 className="text-white text-lg font-bold">Progress</h2>
           <button
             type="button"
             className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg"
           >
             Assign Secret Sints!
           </button>
-          <p>TODO: wishlist, don't let them assign sints before everyone submitted their wishlist</p>
           <p className="text-white">
             Once the Secret Sints have been assigned, you can not invite any
-            more participants.
+            more participants, nor can anyone edit their wishlists.
           </p>
           <button
-            type="button"
             className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
-            onClick={() => navigate('..')}
+            onClick={() => navigate('groups')}
           >
             Back to all groups
           </button>

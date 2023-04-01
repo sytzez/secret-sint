@@ -4,7 +4,7 @@ class ParticipationsController < ApplicationController
 
   def show
     if @participation.user == current_user
-      render json: { success: true, data: @participation }
+      render json: { success: true, data: @participation }, include: ['assigned_user']
     else
       render json: { success: false, message: "Can't view other participant's details" }, status: :forbidden
     end
@@ -39,7 +39,7 @@ class ParticipationsController < ApplicationController
     end
 
     if @participation.update(own_participation_params)
-      render json: { success: true, data: @participation }
+      render json: { success: true }
     else
       render json: { success: false,  message: @participation.errors.full_messages.join('. ') }, status: :unprocessable_entity
     end
@@ -59,7 +59,7 @@ class ParticipationsController < ApplicationController
   
   def set_participation
     @participation = if params[:id] == 'own'
-                       @group.participations.find_by(current_user.id)
+                       @group.participations.find_by(user_id: current_user.id)
                      else
                        @group.participations.find_by(user_id: params[:id])
                      end

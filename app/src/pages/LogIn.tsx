@@ -26,9 +26,9 @@ export default function LogIn() {
       <h1 className="text-white text-2xl font-bold mb-4">Welcome back</h1>
       <LogInForm onSubmit={onSubmit} isLoading={isLoading} />
       <p className="my-4 text-white">{error}</p>
-      <a href="/signup" className="text-white underline hover:text-yellow-200">
+      <button onClick={() => navigate('/signup')} className="text-white underline hover:text-yellow-200">
         Sign up for a new account.
-      </a>
+      </button>
     </>
   )
 }

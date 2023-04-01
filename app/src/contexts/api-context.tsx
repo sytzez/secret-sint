@@ -1,20 +1,22 @@
 import { createContext, ReactNode, useContext } from 'react'
-import { AuthContext } from './auth-context'
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { LogInRequest } from '../schemata/log-in-request'
 import { Group, groupSchema } from '../schemata/group'
 import { GroupRequest } from '../schemata/group-request'
 import { InviteRequest } from '../schemata/invite-request'
+import { Participation, participationSchema } from "../schemata/participation";
 
 export interface Api {
   signUp: (request: SignUpRequest) => Promise<void>
   logIn: (request: LogInRequest) => Promise<void>
   groups: () => Promise<Group[]>
-  createGroup: (request: GroupRequest) => Promise<Group>
   group: (id: number) => Promise<Group>
+  createGroup: (request: GroupRequest) => Promise<Group>
+  updateGroup: (id: number, request: GroupRequest) => Promise<void>
   leaveGroup: (id: number) => Promise<void>
   invite: (groupId: number, request: InviteRequest) => Promise<void>
-  participation: (groupId: number) => Promise<void>
+  participation: (groupId: number) => Promise<Participation>
+  updateParticipation: (groupId: number, request) => Promise<void>
 }
 
 export const ApiContext = createContext(null as unknown as Api)
@@ -22,10 +24,8 @@ export const ApiContext = createContext(null as unknown as Api)
 const API_BASE = 'http://127.0.0.1:3000'
 
 export function ApiContextProvider({ children }: { children: ReactNode }) {
-  const [authState, setAuthState] = useContext(AuthContext)
-
   const apiRequest =
-    (method: 'POST' | 'GET' | 'DELETE') =>
+    (method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
     (route: string, body: object | null = null) =>
       fetch(`${API_BASE}/${route}`, {
         method,
@@ -52,28 +52,27 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
         })
 
   const post = apiRequest('POST')
+  const patch = apiRequest('PATCH')
   const get = apiRequest('GET')
   const del = apiRequest('DELETE')
 
   const api: Api = {
     signUp: async (request) => {
-      const response = await post('signup', { user: request })
-      setAuthState({ userId: response.data.id })
+      await post('signup', { user: request })
     },
     logIn: async (request) => {
-      const response = await post('login', { user: request })
-      setAuthState({ userId: response.data.id })
+      await post('login', { user: request })
     },
     groups: async () => {
       const response = await get('groups')
       return response.data.map((group: object) => groupSchema.parse(group))
     },
-    createGroup: async (request) => {
-      const response = await post('groups', { group: request })
-      return groupSchema.parse(response.data)
-    },
     group: async (id) => {
       const response = await get(`groups/${id}`)
+      return groupSchema.parse(response.data)
+    },
+    createGroup: async (request) => {
+      const response = await post('groups', { group: request })
       return groupSchema.parse(response.data)
     },
     leaveGroup: async (id: number) => {
@@ -83,10 +82,12 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
       await post(`groups/${groupId}/participations`, { participation: request })
     },
     participation: async (groupId) => {
-      const response = get(`groups/${groupId}/participations/own`)
-      // TODO: parse
+      const response = await get(`groups/${groupId}/participations/own`)
+      return participationSchema.parse(response.data)
     },
-
+    updateParticipation: async (groupId, request) => {
+      await patch(`groups/${groupId}/participations/own`, { participation: request })
+    }
   }
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
