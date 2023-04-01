@@ -4,6 +4,7 @@ import LogIn from './pages/LogIn'
 import Groups from './pages/Groups'
 import NewGroup from './pages/NewGroup'
 import GroupDetail from './pages/GroupDetail'
+import InviteParticipant from './pages/InviteParticipant'
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           <Route path="/groups" element={<Groups />} />
           <Route path="/groups/new" element={<NewGroup />} />
           <Route path="/groups/:groupId" element={<GroupDetail />} />
+          <Route
+            path="/groups/:groupId/invite"
+            element={<InviteParticipant />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

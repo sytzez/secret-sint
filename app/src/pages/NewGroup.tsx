@@ -1,8 +1,8 @@
 import GroupForm from '../components/GroupForm'
-import { Group } from '../schemata/group'
 import { useContext, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { useNavigate } from 'react-router-dom'
+import { GroupRequest } from '../schemata/group-request'
 
 export default function NewGroup() {
   const api = useContext(ApiContext)
@@ -10,13 +10,13 @@ export default function NewGroup() {
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const onSubmit = async (request: Group) => {
+  const onSubmit = async (request: GroupRequest) => {
     setLoading(true)
     try {
       const group = await api.createGroup(request)
-      console.log(group) // TODO: go to group detail
-    } catch (e: { message: string }) {
-      setError(e.mesage)
+      navigate(`/groups/${group.id}`)
+    } catch (e) {
+      setError(e.message)
     }
     setLoading(false)
   }

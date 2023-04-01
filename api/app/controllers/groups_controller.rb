@@ -6,12 +6,16 @@ class GroupsController < ApplicationController
   end
 
   def show
-    render json: { success: true, data: @group }
+    render json: { success: true, data: @group }, include: ['users']
   end
 
   def create
     @group = Group.new(group_params)
     @group.has_started = false
+    @group.participations << Participation.new(
+      user: current_user,
+      present_status: 0,
+    )
 
     if @group.save
       render json: { success: true, data: @group }, status: :created, location: @group
@@ -22,7 +26,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      render json: { success: true, data: @group }
+      render json: { success: true, data: @group }, include: ['users']
     else
       render json: { success: false,  message: @group.errors.full_messages.join('. ') }, status: :unprocessable_entity
     end
@@ -33,11 +37,12 @@ class GroupsController < ApplicationController
   end
 
   private
-    def set_group
-      @group = Group.find(params[:id])
-    end
 
-    def group_params
-      params.require(:group).permit(:title, :deadline)
-    end
+  def set_group
+    @group = current_user.groups.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:title, :deadline)
+  end
 end

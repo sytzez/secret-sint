@@ -4,13 +4,15 @@ import { SignUpRequest } from '../schemata/sign-up-request'
 import { LogInRequest } from '../schemata/log-in-request'
 import { Group, groupSchema } from '../schemata/group'
 import { GroupRequest } from '../schemata/group-request'
+import { InviteRequest } from '../schemata/invite-request'
 
 export interface Api {
-  signUp: (request: SignUpRequest) => void
-  logIn: (request: LogInRequest) => void
+  signUp: (request: SignUpRequest) => Promise<void>
+  logIn: (request: LogInRequest) => Promise<void>
   groups: () => Promise<Group[]>
   createGroup: (request: GroupRequest) => Promise<Group>
   group: (id: number) => Promise<Group>
+  invite: (groupId: number, request: InviteRequest) => Promise<void>
 }
 
 export const ApiContext = createContext(null as unknown as Api)
@@ -70,6 +72,9 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
     group: async (id) => {
       const response = await get(`groups/${id}`)
       return groupSchema.parse(response.data)
+    },
+    invite: async (groupId, request) => {
+      await post(`/groups/${groupId}/invite`, { user: request })
     },
   }
 

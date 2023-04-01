@@ -10,10 +10,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
     <form
       onSubmit={(event) => {
         event.preventDefault()
-
-        if (isLoading) {
-          return
-        }
+        if (isLoading) return
 
         const form = event.target as unknown as {
           email: HTMLInputElement
