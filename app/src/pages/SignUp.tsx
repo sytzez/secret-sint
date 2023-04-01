@@ -12,7 +12,7 @@ export default function SignUp() {
     setLoading(true)
     try {
       await api.signUp(request)
-    } catch (e) {
+    } catch(e: { message: string }) {
       setError(e.message)
     }
     setLoading(false)

@@ -21,18 +21,24 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
         'Accept': 'application/json',
       },
       body: JSON.stringify(body),
+      credentials: 'include',
     })
       .then((response) => response.json())
+      .catch((e) => {
+        console.error(e)
+        throw new Error('Something went wrong, try again later')
+      })
   )
 
   const api: Api = {
     signUp: async (request: SignUpRequest) => {
       const response = await post('signup', { user: request })
-        .catch((e) => { throw new Error(e.message) })
 
       if (! response.success) {
         throw new Error(response.message)
       }
+
+      setAuthState({ userId: response.data.id })
     }
   }
 
