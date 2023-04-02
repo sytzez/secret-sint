@@ -1,7 +1,7 @@
 import { SignUpRequest, signUpRequestSchema } from '../schemata/sign-up-request'
-import useForm from "../hooks/use-form";
-import Form from "./Form";
-import Input from "./Input";
+import useForm from '../hooks/use-form'
+import Form from './Form'
+import Input from './Input'
 
 export interface SignUpFormProps {
   onSubmit: (data: SignUpRequest) => void
@@ -9,7 +9,11 @@ export interface SignUpFormProps {
 }
 
 export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
-  const [submit, error] = useForm(signUpRequestSchema, ['email', 'password'], onSubmit)
+  const [submit, error] = useForm(
+    signUpRequestSchema,
+    ['email', 'password'],
+    onSubmit,
+  )
 
   return (
     <Form

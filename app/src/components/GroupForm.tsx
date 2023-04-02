@@ -1,7 +1,7 @@
 import { GroupRequest, groupRequestSchema } from '../schemata/group-request'
-import useForm from "../hooks/use-form";
-import Form from "./Form";
-import Input from "./Input";
+import useForm from '../hooks/use-form'
+import Form from './Form'
+import Input from './Input'
 
 export interface GroupFormProps {
   onSubmit: (data: GroupRequest) => void

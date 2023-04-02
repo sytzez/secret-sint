@@ -2,8 +2,8 @@ import {
   ParticipationRequest,
   participationRequestSchema,
 } from '../schemata/participation-request'
-import useForm from "../hooks/use-form";
-import Form from "./Form";
+import useForm from '../hooks/use-form'
+import Form from './Form'
 
 export interface WishlistFormProps {
   onSubmit: (data: ParticipationRequest) => void
@@ -16,7 +16,11 @@ export default function WishlistForm({
   isLoading,
   value,
 }: WishlistFormProps) {
-  const [submit, error] = useForm(participationRequestSchema, ['wishlist'], onSubmit)
+  const [submit, error] = useForm(
+    participationRequestSchema,
+    ['wishlist'],
+    onSubmit,
+  )
 
   return (
     <Form

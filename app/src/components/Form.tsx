@@ -1,6 +1,6 @@
-import ErrorText from "../ErrorText";
-import { ReactNode } from "react";
-import Button from "./Button";
+import ErrorText from '../ErrorText'
+import { ReactNode } from 'react'
+import Button from './Button'
 
 export interface FormProps {
   children: ReactNode
@@ -10,7 +10,13 @@ export interface FormProps {
   error: string
 }
 
-export default function Form({children, submitLabel, onSubmit, isLoading, error}: FormProps) {
+export default function Form({
+  children,
+  submitLabel,
+  onSubmit,
+  isLoading,
+  error,
+}: FormProps) {
   return (
     <form
       onSubmit={(event) => {

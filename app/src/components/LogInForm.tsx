@@ -1,7 +1,7 @@
 import { LogInRequest, logInRequestSchema } from '../schemata/log-in-request'
-import useForm from "../hooks/use-form";
-import Form from "./Form";
-import Input from "./Input";
+import useForm from '../hooks/use-form'
+import Form from './Form'
+import Input from './Input'
 
 export interface LogInFormProps {
   onSubmit: (data: LogInRequest) => void
@@ -9,7 +9,11 @@ export interface LogInFormProps {
 }
 
 export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
-  const [submit, error] = useForm(logInRequestSchema, ['email', 'password'], onSubmit)
+  const [submit, error] = useForm(
+    logInRequestSchema,
+    ['email', 'password'],
+    onSubmit,
+  )
 
   return (
     <Form

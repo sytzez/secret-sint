@@ -9,10 +9,21 @@ export interface InputProps {
   disabled: boolean
 }
 
-export default function Input({ optional, minLength, name, label, placeholder, type, autocomplete, disabled }: InputProps) {
+export default function Input({
+  optional,
+  minLength,
+  name,
+  label,
+  placeholder,
+  type,
+  autocomplete,
+  disabled,
+}: InputProps) {
   return (
     <>
-      <label htmlFor={name} className="text-white">{label}</label>
+      <label htmlFor={name} className="text-white">
+        {label}
+      </label>
       <input
         required={!optional}
         minLength={minLength}

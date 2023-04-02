@@ -1,7 +1,7 @@
 import { InviteRequest, inviteRequestSchema } from '../schemata/invite-request'
-import useForm from "../hooks/use-form";
-import Form from "./Form";
-import Input from "./Input";
+import useForm from '../hooks/use-form'
+import Form from './Form'
+import Input from './Input'
 
 export interface InviteFormProps {
   onSubmit: (data: InviteRequest) => void
