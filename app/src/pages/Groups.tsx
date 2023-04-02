@@ -2,15 +2,13 @@ import { useContext, useEffect, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { Group } from '../schemata/group'
 import { useNavigate } from 'react-router-dom'
-import useAsync from "../hooks/use-async";
+import useAsync from '../hooks/use-async'
 
 export default function Groups() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
 
-  const [loadGroups, groups, , error] = useAsync(
-    async () => await api.groups()
-  )
+  const [loadGroups, groups, , error] = useAsync(async () => await api.groups())
 
   useEffect(loadGroups, [])
 
