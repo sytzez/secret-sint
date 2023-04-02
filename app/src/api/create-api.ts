@@ -9,37 +9,10 @@ import { ParticipationRequest } from '../schemata/participation-request'
 export type Api = ReturnType<typeof createApi>
 
 export default function createApi(apiBase: string) {
-  const apiRequest =
-    (method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
-    (route: string, body: object | null = null) =>
-      fetch(`${apiBase}/${route}`, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: body ? JSON.stringify(body) : undefined,
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .catch((e) => {
-          console.error(e)
-          throw new Error('Something went wrong, try again later')
-        })
-        .then((response) => {
-          if (response.error) {
-            throw new Error(response.error)
-          }
-          if (!response.success) {
-            throw new Error(response.message)
-          }
-          return response
-        })
-
-  const post = apiRequest('POST')
-  const patch = apiRequest('PATCH')
-  const get = apiRequest('GET')
-  const del = apiRequest('DELETE')
+  const post = apiRequest(apiBase, 'POST')
+  const patch = apiRequest(apiBase, 'PATCH')
+  const get = apiRequest(apiBase, 'GET')
+  const del = apiRequest(apiBase, 'DELETE')
 
   return {
     signUp: async (request: SignUpRequest) => {
@@ -90,3 +63,30 @@ export default function createApi(apiBase: string) {
     },
   }
 }
+
+const apiRequest =
+  (apiBase: string, method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
+  (route: string, body: object | null = null) =>
+    fetch(`${apiBase}/${route}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .catch((e) => {
+        console.error(e)
+        throw new Error('Something went wrong, try again later')
+      })
+      .then((response) => {
+        if (response.error) {
+          throw new Error(response.error)
+        }
+        if (!response.success) {
+          throw new Error(response.message)
+        }
+        return response
+      })
