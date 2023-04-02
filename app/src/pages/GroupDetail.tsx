@@ -5,7 +5,7 @@ import ParticipantsList from '../components/ParticipantsList'
 import Button from '../components/Button'
 import GroupProgress from '../components/GroupProgress'
 import useAsync from '../hooks/use-async'
-import ErrorText from '../ErrorText'
+import ErrorText from '../components/ErrorText'
 
 export default function GroupDetail() {
   const api = useContext(ApiContext)

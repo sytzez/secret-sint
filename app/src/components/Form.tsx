@@ -1,4 +1,4 @@
-import ErrorText from '../ErrorText'
+import ErrorText from './ErrorText'
 import { ReactNode } from 'react'
 import Button from './Button'
 

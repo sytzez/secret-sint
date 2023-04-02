@@ -11,7 +11,7 @@ export default function Groups() {
   const [loadGroups, groups, , error] = useAsync(
     async () => await api.groups()
   )
-  
+
   useEffect(loadGroups, [])
 
   if (error) return <p className="text-white">{error}</p>
