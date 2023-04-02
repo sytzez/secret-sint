@@ -1,7 +1,7 @@
 import { InviteRequest, inviteRequestSchema } from '../schemata/invite-request'
 import useForm from "../hooks/use-form";
-import ErrorText from "../ErrorText";
 import Form from "./Form";
+import Input from "./Input";
 
 export interface InviteFormProps {
   onSubmit: (data: InviteRequest) => void
@@ -18,17 +18,11 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
       isLoading={isLoading}
       error={error}
     >
-      <label htmlFor="email" className="text-white">
-        Email address
-      </label>
-      <input
-        required
-        type="email"
-        autoComplete="none"
-        id="email"
+      <Input
         name="email"
+        label="Email address"
         placeholder="Their email address"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
+        autocomplete="none"
         disabled={isLoading}
       />
     </Form>

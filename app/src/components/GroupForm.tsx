@@ -1,6 +1,7 @@
 import { GroupRequest, groupRequestSchema } from '../schemata/group-request'
 import useForm from "../hooks/use-form";
 import Form from "./Form";
+import Input from "./Input";
 
 export interface GroupFormProps {
   onSubmit: (data: GroupRequest) => void
@@ -22,17 +23,10 @@ export default function GroupForm({
       isLoading={isLoading}
       error={error}
     >
-      <label htmlFor="name" className="text-white">
-        Name
-      </label>
-      <input
-        required
-        type="title"
-        autoComplete="none"
-        id="title"
+      <Input
         name="title"
+        label="Name"
         placeholder="The name of the group"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
     </Form>

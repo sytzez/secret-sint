@@ -1,6 +1,7 @@
 import { SignUpRequest, signUpRequestSchema } from '../schemata/sign-up-request'
 import useForm from "../hooks/use-form";
 import Form from "./Form";
+import Input from "./Input";
 
 export interface SignUpFormProps {
   onSubmit: (data: SignUpRequest) => void
@@ -17,31 +18,20 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
       isLoading={isLoading}
       error={error}
     >
-      <label htmlFor="email" className="text-white">
-        Email
-      </label>
-      <input
-        required
-        type="email"
-        autoComplete="email"
-        id="email"
+      <Input
         name="email"
+        label="Email"
         placeholder="Your email address"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
+        autocomplete="email"
         disabled={isLoading}
       />
-      <label htmlFor="password" className="text-white">
-        Password
-      </label>
-      <input
-        required
-        type="password"
-        autoComplete="new-password"
-        id="password"
-        name="password"
-        placeholder="Your password"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
+      <Input
         minLength={8}
+        name="password"
+        type="password"
+        label="Password"
+        placeholder="Your password"
+        autocomplete="new-password"
         disabled={isLoading}
       />
     </Form>

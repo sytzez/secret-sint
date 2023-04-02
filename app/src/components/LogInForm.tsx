@@ -1,6 +1,7 @@
 import { LogInRequest, logInRequestSchema } from '../schemata/log-in-request'
 import useForm from "../hooks/use-form";
 import Form from "./Form";
+import Input from "./Input";
 
 export interface LogInFormProps {
   onSubmit: (data: LogInRequest) => void
@@ -17,30 +18,19 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
       isLoading={isLoading}
       error={error}
     >
-      <label htmlFor="email" className="text-white">
-        Email
-      </label>
-      <input
-        required
-        type="email"
-        autoComplete="email"
-        id="email"
+      <Input
         name="email"
+        label="Email"
         placeholder="Your email address"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
+        autocomplete="email"
         disabled={isLoading}
       />
-      <label htmlFor="password" className="text-white">
-        Password
-      </label>
-      <input
-        required
-        type="password"
-        autoComplete="new-password"
-        id="password"
+      <Input
         name="password"
+        label="Password"
+        type="password"
         placeholder="Your password"
-        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
+        autocomplete="password"
         disabled={isLoading}
       />
     </Form>

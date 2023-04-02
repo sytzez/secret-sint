@@ -20,7 +20,7 @@ export default function useForm<T>(
     if (result.success) {
       onSubmit(result.data)
     } else {
-      console.error(result.error)
+      console.error(data, values, result.error)
       setError(result.error.format()._errors.join('. '))
     }
   }
