@@ -8,11 +8,11 @@ import { ParticipationRequest } from '../schemata/participation-request'
 
 export type Api = ReturnType<typeof createApi>
 
-export default function createApi(apiBase: string) {
-  const post = apiRequest(apiBase, 'POST')
-  const patch = apiRequest(apiBase, 'PATCH')
-  const get = apiRequest(apiBase, 'GET')
-  const del = apiRequest(apiBase, 'DELETE')
+export default function createApi(baseUrl: string) {
+  const post = apiMethod(baseUrl, 'POST')
+  const patch = apiMethod(baseUrl, 'PATCH')
+  const get = apiMethod(baseUrl, 'GET')
+  const del = apiMethod(baseUrl, 'DELETE')
 
   return {
     signUp: async (request: SignUpRequest) => {
@@ -64,10 +64,10 @@ export default function createApi(apiBase: string) {
   }
 }
 
-const apiRequest =
-  (apiBase: string, method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
+const apiMethod =
+  (baseUrl: string, method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
   (route: string, body: object | null = null) =>
-    fetch(`${apiBase}/${route}`, {
+    fetch(`${baseUrl}/${route}`, {
       method,
       headers: {
         'Content-Type': 'application/json',

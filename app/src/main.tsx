@@ -6,7 +6,7 @@ import { ApiContextProvider } from './contexts/api-context'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ApiContextProvider>
+    <ApiContextProvider apiBase={import.meta.env.VITE_API_BASE}>
       <App />
     </ApiContextProvider>
   </React.StrictMode>,

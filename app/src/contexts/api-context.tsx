@@ -10,10 +10,13 @@ import createApi, { Api } from '../api/create-api'
 
 export const ApiContext = createContext(null as unknown as Api)
 
-const API_BASE = 'http://127.0.0.1:3000'
+export interface ApiContextProviderProps {
+  children: ReactNode,
+  apiBase: string,
+}
 
-export function ApiContextProvider({ children }: { children: ReactNode }) {
-  const api = createApi(API_BASE)
+export function ApiContextProvider({ children, apiBase }: ApiContextProviderProps) {
+  const api = createApi(apiBase)
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>
 }
