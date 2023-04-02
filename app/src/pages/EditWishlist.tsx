@@ -4,9 +4,9 @@ import { ApiContext } from '../contexts/api-context'
 import WishlistForm from '../components/WishlistForm'
 import { Participation } from '../schemata/participation'
 import { ParticipationRequest } from '../schemata/participation-request'
-import ErrorText from "../ErrorText";
+import ErrorText from '../ErrorText'
 
-export default function YourWishlist() {
+export default function EditWishlist() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
   const { groupId } = useParams()

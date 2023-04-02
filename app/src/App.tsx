@@ -5,7 +5,8 @@ import Groups from './pages/Groups'
 import NewGroup from './pages/NewGroup'
 import GroupDetail from './pages/GroupDetail'
 import InviteParticipant from './pages/InviteParticipant'
-import YourWishlist from './pages/EditWishlist'
+import EditWishlist from './pages/EditWishlist'
+import AssigneeDetails from "./pages/AssigneeDetails";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
             path="/groups/:groupId/invite"
             element={<InviteParticipant />}
           />
-          <Route path="/groups/:groupId/wishlist" element={<YourWishlist />} />
+          <Route path="/groups/:groupId/wishlist" element={<EditWishlist />} />
+          <Route path="/groups/:groupId/assignee" element={<AssigneeDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

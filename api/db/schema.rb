@@ -22,14 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_151116) do
   create_table "participations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
-    t.integer "assigned_user_id"
+    t.integer "sint_id"
     t.string "wishlist"
     t.integer "present_status"
     t.datetime "eta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assigned_user_id"], name: "index_participations_on_assigned_user_id"
     t.index ["group_id"], name: "index_participations_on_group_id"
+    t.index ["sint_id"], name: "index_participations_on_sint_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
@@ -47,5 +47,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_151116) do
 
   add_foreign_key "participations", "groups"
   add_foreign_key "participations", "users"
-  add_foreign_key "participations", "users", column: "assigned_user_id"
+  add_foreign_key "participations", "users", column: "sint_id"
 end

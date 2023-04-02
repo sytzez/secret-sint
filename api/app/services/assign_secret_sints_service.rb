@@ -14,11 +14,11 @@ class AssignSecretSintsService
       user_ids = @group.participations.pluck(:user_id)
 
       @group.participations.each do |participation|
-        assigned_user_id = user_ids.reject{ |id| id == participation.user_id }.sample
+        sint_id = user_ids.reject{ |id| id == participation.user_id }.sample
 
-        participation.update!(assigned_user_id: assigned_user_id)
+        participation.update!(sint_id: sint_id)
 
-        user_ids.delete(assigned_user_id)
+        user_ids.delete(sint_id)
       end
 
       @group.update!(has_started: true)

@@ -3,8 +3,8 @@ class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show update destroy ]
 
   def show
-    if @participation.user == current_user
-      render json: { success: true, data: @participation }, include: ['assigned_user']
+    if @participation.user == current_user || @participation.sint == current_user
+      render json: { success: true, data: @participation }, include: %i[user]
     else
       render json: { success: false, message: "Can't view other participant's details" }, status: :forbidden
     end
@@ -62,9 +62,11 @@ class ParticipationsController < ApplicationController
   
   def set_participation
     @participation = if params[:id] == 'own'
-                       @group.participations.find_by(user_id: current_user.id)
+                       @group.participations.find_by!(user_id: current_user.id)
+                     elsif params[:id] == 'assigned'
+                       @group.participations.find_by!(sint_id: current_user.id)
                      else
-                       @group.participations.find_by(user_id: params[:id])
+                       @group.participations.find_by!(user_id: params[:id])
                      end
   end
   

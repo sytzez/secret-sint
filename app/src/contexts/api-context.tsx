@@ -22,6 +22,7 @@ export interface Api {
     groupId: number,
     request: ParticipationRequest,
   ) => Promise<void>
+  assignee: (groupId: number) => Promise<Participation>
 }
 
 export const ApiContext = createContext(null as unknown as Api)
@@ -101,6 +102,10 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
         participation: request,
       })
     },
+    assignee: async (groupId) => {
+      const response = await get(`groups/${groupId}/participations/assigned`)
+      return participationSchema.parse(response.data)
+    }
   }
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>

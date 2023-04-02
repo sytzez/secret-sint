@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-export default function useAsync<T>(call: () => Promise<T>): [
-  () => void,
-  T | null,
-  boolean,
-  string
-] {
+export default function useAsync<T>(
+  call: () => Promise<T>,
+): [() => void, T | null, boolean, string] {
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [result, setResult] = useState<T | null>(null)

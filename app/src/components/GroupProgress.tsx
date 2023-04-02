@@ -9,18 +9,20 @@ export default function GroupProgress({ group }: GroupProgressProps) {
   const userCount = group.users!.length
 
   if (group.has_started) {
-    return <>
-      <ProgressBar
-        label={`${group.ordered_count!} out of ${userCount} Sints have ordered their presents.`}
-        progress={group.ordered_count! / userCount}
-      />
-      {group.ordered_count! > 0 && // We only want to show this stat if at least one person has ordered.
+    return (
+      <>
         <ProgressBar
-          label={`${group.delivered_count!} out of ${userCount} Sints have received their presents.`}
-          progress={group.delivered_count! / userCount}
+          label={`${group.ordered_count!} out of ${userCount} Sints have ordered their presents.`}
+          progress={group.ordered_count! / userCount}
         />
-      }
-    </>
+        {group.ordered_count! > 0 && ( // We only want to show this stat if at least one person has ordered.
+          <ProgressBar
+            label={`${group.delivered_count!} out of ${userCount} Sints have received their presents.`}
+            progress={group.delivered_count! / userCount}
+          />
+        )}
+      </>
+    )
   }
 
   return (

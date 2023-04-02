@@ -3,7 +3,7 @@ class CreateParticipations < ActiveRecord::Migration[7.0]
     create_table :participations do |t|
       t.belongs_to :user, index: true, foreign_key: true
       t.belongs_to :group, index: true, foreign_key: true
-      t.belongs_to :assigned_user, null: true, index: true, foreign_key: { to_table: :users }
+      t.belongs_to :sint, null: true, index: true, foreign_key: { to_table: :users }
 
       t.string :wishlist, null: true
       t.integer :present_status

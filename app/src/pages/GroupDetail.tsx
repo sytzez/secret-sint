@@ -4,16 +4,17 @@ import { ApiContext } from '../contexts/api-context'
 import ParticipantsList from '../components/ParticipantsList'
 import Button from '../components/Button'
 import GroupProgress from '../components/GroupProgress'
-import useAsync from "../hooks/use-async";
-import ErrorText from "../ErrorText";
+import useAsync from '../hooks/use-async'
+import ErrorText from '../ErrorText'
 
 export default function GroupDetail() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
   const { groupId } = useParams()
 
-  const [loadGroup, group, , groupError] =
-    useAsync(async () => await api.group(Number(groupId)))
+  const [loadGroup, group, , groupError] = useAsync(
+    async () => await api.group(Number(groupId)),
+  )
 
   const [assignSecretSints, , isLoadingSecretSints, secretSintsError] =
     useAsync(async () => {
@@ -25,7 +26,7 @@ export default function GroupDetail() {
 
   if (groupError) return <p className="text-white">{groupError}</p>
 
-  if (!group) return <p className="text-white">Loading</p>
+  if (!group) return <p className="text-white">Loading...</p>
 
   const canAssignSecretSints =
     group.users &&
@@ -43,11 +44,18 @@ export default function GroupDetail() {
         />
       )}
       {group.has_started && (
-        <Button
-          label="View your recipient"
-          onClick={() => {}}
-          style="secondary"
-        />
+        <>
+          <Button
+            label="View your assignee"
+            onClick={() => navigate(`/groups/${group.id}/assignee`)}
+            style="secondary"
+          />
+          <Button
+            label="Update your present status"
+            onClick={() => {}}
+            style="secondary"
+          />
+        </>
       )}
       <h2 className="text-white text-lg font-bold mt-2">Participants</h2>
       <ParticipantsList
@@ -72,7 +80,7 @@ export default function GroupDetail() {
           <ErrorText error={secretSintsError} />
         </>
       )}
-      <div className="mt-4">
+      <div className="mt-6">
         <Button
           label="Back to all groups"
           onClick={() => navigate('/groups')}

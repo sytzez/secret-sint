@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { useNavigate } from 'react-router-dom'
 import { GroupRequest } from '../schemata/group-request'
-import ErrorText from "../ErrorText";
+import ErrorText from '../ErrorText'
 
 export default function NewGroup() {
   const api = useContext(ApiContext)
