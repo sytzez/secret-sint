@@ -23,7 +23,10 @@ class ParticipationsController < ApplicationController
       return
     end
 
-    @participation = @group.participations.build(user: user)
+    @participation = @group.participations.build(
+      user: user,
+      present_status: :not_started
+    )
 
     if @participation.save
       render json: { success: true, data: @participation }, status: :created, location: [@group, @participation]

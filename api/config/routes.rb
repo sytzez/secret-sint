@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   )
 
   resources :groups do
+    member do
+      post :assign_secret_sints
+    end
+
     resources :participations, only: %i[update create destroy show]
   end
 end

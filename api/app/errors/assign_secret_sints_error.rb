@@ -1,0 +1,2 @@
+class AssignSecretSintsError < StandardError
+end

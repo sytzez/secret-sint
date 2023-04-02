@@ -31,7 +31,7 @@ export default function NewGroup() {
       />
       {error && <p className="my-4 text-white">{error}</p>}
       <button
-        className="rounded-full border border-white text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+        className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate('/groups')}
       >
         Back to all groups

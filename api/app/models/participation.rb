@@ -8,4 +8,6 @@ class Participation < ApplicationRecord
   belongs_to :group
   belongs_to :user
   belongs_to :assigned_user, class_name: 'User', optional: true
+
+  validates :present_status, presence: true
 end

@@ -33,7 +33,7 @@ export default function InviteParticipant() {
       <InviteForm onSubmit={onSubmit} isLoading={isLoading} />
       {error && <p className="my-4 text-white">{error}</p>}
       <button
-        className="rounded-full border border-white text-center text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+        className="rounded-full border border-red-300 text-center text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate(`/groups/${groupId}`)}
       >
         Back to group
