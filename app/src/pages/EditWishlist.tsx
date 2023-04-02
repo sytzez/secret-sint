@@ -4,6 +4,7 @@ import { ApiContext } from '../contexts/api-context'
 import WishlistForm from '../components/WishlistForm'
 import { Participation } from '../schemata/participation'
 import { ParticipationRequest } from '../schemata/participation-request'
+import ErrorText from "../ErrorText";
 
 export default function YourWishlist() {
   const api = useContext(ApiContext)
@@ -48,7 +49,7 @@ export default function YourWishlist() {
         isLoading={isLoading}
         value={participation.wishlist || ''}
       />
-      {error && <p className="my-4 text-white">{error}</p>}
+      <ErrorText error={error} />
       <button
         className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate(`/groups/${groupId}`)}

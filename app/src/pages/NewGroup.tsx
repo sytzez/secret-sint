@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { useNavigate } from 'react-router-dom'
 import { GroupRequest } from '../schemata/group-request'
+import ErrorText from "../ErrorText";
 
 export default function NewGroup() {
   const api = useContext(ApiContext)
@@ -29,7 +30,7 @@ export default function NewGroup() {
         onSubmit={onSubmit}
         isLoading={isLoading}
       />
-      {error && <p className="my-4 text-white">{error}</p>}
+      <ErrorText error={error} />
       <button
         className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate('/groups')}

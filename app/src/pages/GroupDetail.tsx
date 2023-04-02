@@ -2,28 +2,29 @@ import { useContext, useEffect, useState } from 'react'
 import { Group } from '../schemata/group'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ApiContext } from '../contexts/api-context'
-import ProgressBar from '../components/ProgressBar'
 import ParticipantsList from '../components/ParticipantsList'
 import Button from '../components/Button'
 import GroupProgress from '../components/GroupProgress'
+import useAsync from "../hooks/use-async";
+import ErrorText from "../ErrorText";
 
 export default function GroupDetail() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
-  const [group, setGroup] = useState<Group | null>(null)
-  const [error, setError] = useState('')
   const { groupId } = useParams()
 
-  useEffect(() => {
-    api
-      .group(Number(groupId))
-      .then(setGroup)
-      .catch((e: { message: string }) => {
-        setError(e.message)
-      })
-  }, [groupId])
+  const [loadGroup, group, , groupError] =
+    useAsync(async () => await api.group(Number(groupId)))
 
-  if (error) return <p className="text-white">{error}</p>
+  const [assignSecretSints, , isLoadingSecretSints, secretSintsError] =
+    useAsync(async () => {
+      await api.assignSecretSints(group!.id)
+      navigate('.')
+    })
+
+  useEffect(loadGroup, [groupId])
+
+  if (groupError) return <p className="text-white">{groupError}</p>
 
   if (!group) return <p className="text-white">Loading</p>
 
@@ -31,11 +32,6 @@ export default function GroupDetail() {
     group.users &&
     group.users.length >= 3 &&
     group.wishlist_count === group.users.length
-
-  const assignSecretSints = async () => {
-    await api.assignSecretSints(group.id)
-    navigate('.')
-  }
 
   return (
     <div className="flex gap-2 flex-col">
@@ -65,15 +61,16 @@ export default function GroupDetail() {
       {!group.has_started && (
         <>
           <Button
-            label="Assign Secret Sints!"
+            label={isLoadingSecretSints ? '...' : 'Assign Secret Sints!'}
             onClick={assignSecretSints}
-            disabled={!canAssignSecretSints}
+            disabled={!canAssignSecretSints || isLoadingSecretSints}
             style="primary"
           />
           <p className="text-white mb-2">
             Once the Secret Sints have been assigned, you can not invite any
             more participants, nor can anyone change their wishlists.
           </p>
+          <ErrorText error={secretSintsError} />
         </>
       )}
       <div className="mt-4">
