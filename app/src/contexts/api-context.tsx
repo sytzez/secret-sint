@@ -5,7 +5,7 @@ import { Group, groupSchema } from '../schemata/group'
 import { GroupRequest } from '../schemata/group-request'
 import { InviteRequest } from '../schemata/invite-request'
 import { Participation, participationSchema } from '../schemata/participation'
-import { ParticipationRequest } from "../schemata/participation-request";
+import { ParticipationRequest } from '../schemata/participation-request'
 
 export interface Api {
   signUp: (request: SignUpRequest) => Promise<void>
@@ -18,7 +18,10 @@ export interface Api {
   leaveGroup: (id: number) => Promise<void>
   invite: (groupId: number, request: InviteRequest) => Promise<void>
   participation: (groupId: number) => Promise<Participation>
-  updateParticipation: (groupId: number, request: ParticipationRequest) => Promise<void>
+  updateParticipation: (
+    groupId: number,
+    request: ParticipationRequest,
+  ) => Promise<void>
 }
 
 export const ApiContext = createContext(null as unknown as Api)

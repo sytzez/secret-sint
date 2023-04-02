@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
-import { Group } from "../schemata/group";
-import { useNavigate } from "react-router-dom";
+import { Group } from '../schemata/group'
+import { useNavigate } from 'react-router-dom'
 
 export default function Groups() {
   const api = useContext(ApiContext)
@@ -25,8 +25,12 @@ export default function Groups() {
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-white text-2xl font-bold mb-4">Select a group</h1>
-      {groups.length === 0
-        && <p className="text-white mb-2">You are not part of any groups yet. Start a new group or ask someone to invite you.</p>}
+      {groups.length === 0 && (
+        <p className="text-white mb-2">
+          You are not part of any groups yet. Start a new group or ask someone
+          to invite you.
+        </p>
+      )}
       <ul className="mb-2">
         {groups.map((group) => (
           <li
