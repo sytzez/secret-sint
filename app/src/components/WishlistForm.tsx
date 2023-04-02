@@ -2,6 +2,8 @@ import {
   ParticipationRequest,
   participationRequestSchema,
 } from '../schemata/participation-request'
+import useForm from "../hooks/use-form";
+import Form from "./Form";
 
 export interface WishlistFormProps {
   onSubmit: (data: ParticipationRequest) => void
@@ -14,25 +16,14 @@ export default function WishlistForm({
   isLoading,
   value,
 }: WishlistFormProps) {
+  const [submit, error] = useForm(participationRequestSchema, ['wishlist'], onSubmit)
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-        if (isLoading) return
-
-        const form = event.target as unknown as {
-          wishlist: HTMLTextAreaElement
-        }
-        const formData = { wishlist: form.wishlist.value }
-
-        try {
-          const wishlistRequest = participationRequestSchema.parse(formData)
-          onSubmit(wishlistRequest)
-        } catch (e) {
-          console.error(e)
-        }
-      }}
-      className="flex gap-2 flex-col"
+    <Form
+      submitLabel="Save wishlist"
+      onSubmit={submit}
+      isLoading={isLoading}
+      error={error}
     >
       <textarea
         required
@@ -42,14 +33,8 @@ export default function WishlistForm({
         className="bg-white rounded-3xl p-4 disabled:bg-gray-300 shadow-lg"
         rows={5}
         defaultValue={value}
-      />
-      <button
-        type="submit"
-        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
         disabled={isLoading}
-      >
-        {isLoading ? '...' : 'Save wishlist'}
-      </button>
-    </form>
+      />
+    </Form>
   )
 }

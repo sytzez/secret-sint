@@ -1,4 +1,6 @@
 import { LogInRequest, logInRequestSchema } from '../schemata/log-in-request'
+import useForm from "../hooks/use-form";
+import Form from "./Form";
 
 export interface LogInFormProps {
   onSubmit: (data: LogInRequest) => void
@@ -6,33 +8,14 @@ export interface LogInFormProps {
 }
 
 export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
+  const [submit, error] = useForm(logInRequestSchema, ['email', 'password'], onSubmit)
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-
-        if (isLoading) {
-          return
-        }
-
-        const form = event.target as unknown as {
-          email: HTMLInputElement
-          password: HTMLInputElement
-        }
-
-        const formData = {
-          email: form.email.value,
-          password: form.password.value,
-        }
-
-        try {
-          const logInRequest = logInRequestSchema.parse(formData)
-          onSubmit(logInRequest)
-        } catch (e) {
-          console.error(e)
-        }
-      }}
-      className="flex gap-2 flex-col"
+    <Form
+      submitLabel="Log in"
+      onSubmit={submit}
+      isLoading={isLoading}
+      error={error}
     >
       <label htmlFor="email" className="text-white">
         Email
@@ -60,13 +43,6 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
         disabled={isLoading}
       />
-      <button
-        type="submit"
-        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
-        disabled={isLoading}
-      >
-        {isLoading ? '...' : 'Log in'}
-      </button>
-    </form>
+    </Form>
   )
 }

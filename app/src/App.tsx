@@ -6,7 +6,7 @@ import NewGroup from './pages/NewGroup'
 import GroupDetail from './pages/GroupDetail'
 import InviteParticipant from './pages/InviteParticipant'
 import EditWishlist from './pages/EditWishlist'
-import AssigneeDetails from "./pages/AssigneeDetails";
+import AssigneeDetails from './pages/AssigneeDetails'
 
 function App() {
   return (
@@ -24,7 +24,10 @@ function App() {
             element={<InviteParticipant />}
           />
           <Route path="/groups/:groupId/wishlist" element={<EditWishlist />} />
-          <Route path="/groups/:groupId/assignee" element={<AssigneeDetails />} />
+          <Route
+            path="/groups/:groupId/assignee"
+            element={<AssigneeDetails />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

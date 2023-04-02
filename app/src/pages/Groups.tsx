@@ -27,8 +27,8 @@ export default function Groups() {
       <h1 className="text-white text-2xl font-bold mb-4">Select a group</h1>
       {groups.length === 0 && (
         <p className="text-white mb-2 italic">
-          Your groups will be shown here.
-          Start a new group or ask someone to invite you to theirs.
+          Your groups will be shown here. Start a new group or ask someone to
+          invite you to theirs.
         </p>
       )}
       <ul className="mb-2">

@@ -1,4 +1,6 @@
 import { SignUpRequest, signUpRequestSchema } from '../schemata/sign-up-request'
+import useForm from "../hooks/use-form";
+import Form from "./Form";
 
 export interface SignUpFormProps {
   onSubmit: (data: SignUpRequest) => void
@@ -6,30 +8,14 @@ export interface SignUpFormProps {
 }
 
 export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
+  const [submit, error] = useForm(signUpRequestSchema, ['email', 'password'], onSubmit)
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-        if (isLoading) return
-
-        const form = event.target as unknown as {
-          email: HTMLInputElement
-          password: HTMLInputElement
-        }
-
-        const formData = {
-          email: form.email.value,
-          password: form.password.value,
-        }
-
-        try {
-          const signUpRequest = signUpRequestSchema.parse(formData)
-          onSubmit(signUpRequest)
-        } catch (e) {
-          console.error(e)
-        }
-      }}
-      className="flex gap-2 flex-col"
+    <Form
+      submitLabel="Sign up"
+      onSubmit={submit}
+      isLoading={isLoading}
+      error={error}
     >
       <label htmlFor="email" className="text-white">
         Email
@@ -58,13 +44,6 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         minLength={8}
         disabled={isLoading}
       />
-      <button
-        type="submit"
-        className="rounded-full font-bold p-4 bg-yellow-400 hover:bg-yellow-500 shadow-lg disabled:bg-gray-300"
-        disabled={isLoading}
-      >
-        {isLoading ? '...' : 'Sign up'}
-      </button>
-    </form>
+    </Form>
   )
 }

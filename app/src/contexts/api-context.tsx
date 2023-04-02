@@ -105,7 +105,7 @@ export function ApiContextProvider({ children }: { children: ReactNode }) {
     assignee: async (groupId) => {
       const response = await get(`groups/${groupId}/participations/assigned`)
       return participationSchema.parse(response.data)
-    }
+    },
   }
 
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>

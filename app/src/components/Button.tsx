@@ -10,6 +10,7 @@ export interface ButtonProps {
   onClick: () => void
   style: keyof typeof styles
   disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
 export default function Button({
@@ -17,9 +18,15 @@ export default function Button({
   onClick,
   style,
   disabled,
+  type,
 }: ButtonProps) {
   return (
-    <button className={styles[style]} onClick={onClick} disabled={disabled}>
+    <button
+      className={styles[style]}
+      onClick={onClick}
+      disabled={disabled}
+      type={type || 'button'}
+    >
       {label}
     </button>
   )
