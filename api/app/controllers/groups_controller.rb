@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[ show update destroy assign_secret_sints ]
+  before_action :set_group, only: %i[show update destroy assign_secret_sints]
 
   def index
     render json: { success: true, data: current_user.groups }
@@ -32,7 +34,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       render json: { success: true, data: @group }
     else
-      render json: { success: false,  message: @group.errors.full_messages.join('. ') }, status: :unprocessable_entity
+      render json: { success: false, message: @group.errors.full_messages.join('. ') }, status: :unprocessable_entity
     end
   end
 

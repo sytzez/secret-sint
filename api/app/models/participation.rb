@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Participation < ApplicationRecord
   enum present_status: {
     not_started: 0,
     ordered: 1,
-    delivered: 2,
+    delivered: 2
   }
 
   belongs_to :group
