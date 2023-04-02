@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
-import { Group } from '../schemata/group'
+import { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ApiContext } from '../contexts/api-context'
 import ParticipantsList from '../components/ParticipantsList'
