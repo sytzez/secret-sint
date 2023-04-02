@@ -3,6 +3,7 @@
 class ParticipationsController < ApplicationController
   before_action :set_group
   before_action :set_participation, only: %i[show update destroy]
+  before_action :set_invited_user, only: %i[create]
 
   def show
     if @participation.user == current_user || @participation.sint == current_user
@@ -13,9 +14,7 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: invitation_params[:email])
-
-    if user.blank?
+    if @invited_user.blank?
       render json: { success: false, message: "This user doesn't have an account in the app" },
              status: :unprocessable_entity
       return
@@ -26,10 +25,7 @@ class ParticipationsController < ApplicationController
       return
     end
 
-    @participation = @group.participations.build(
-      user: user,
-      present_status: :not_started
-    )
+    @participation = @group.participations.build(user: @invited_user)
 
     if @participation.save
       render json: { success: true, data: @participation }, status: :created, location: [@group, @participation]
@@ -73,6 +69,10 @@ class ParticipationsController < ApplicationController
                      else
                        @group.participations.find_by!(user_id: params[:id])
                      end
+  end
+
+  def set_invited_user
+    @invited_user = User.find_by(email: invitation_params[:email])
   end
 
   def own_participation_params

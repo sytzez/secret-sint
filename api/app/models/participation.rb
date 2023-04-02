@@ -5,7 +5,7 @@ class Participation < ApplicationRecord
     not_started: 0,
     ordered: 1,
     delivered: 2
-  }
+  }, _default: :not_started
 
   belongs_to :group
   belongs_to :user

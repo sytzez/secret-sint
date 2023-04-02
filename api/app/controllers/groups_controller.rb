@@ -15,11 +15,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params) do |g|
-      g.has_started = false
-      g.participations << Participation.new(
-        user: current_user,
-        present_status: :not_started
-      )
+      g.participations << Participation.new(user: current_user)
     end
 
     if @group.save
