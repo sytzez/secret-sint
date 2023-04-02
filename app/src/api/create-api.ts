@@ -1,5 +1,5 @@
-import { groupSchema } from '../schemata/group'
-import { participationSchema } from '../schemata/participation'
+import { Group, groupSchema } from "../schemata/group";
+import { Participation, participationSchema } from "../schemata/participation";
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { LogInRequest } from '../schemata/log-in-request'
 import { GroupRequest } from '../schemata/group-request'
@@ -21,15 +21,15 @@ export default function createApi(baseUrl: string) {
     logIn: async (request: LogInRequest) => {
       await post('login', { user: request })
     },
-    groups: async () => {
+    groups: async (): Promise<Group[]> => {
       const response = await get('groups')
       return response.data.map((group: object) => groupSchema.parse(group))
     },
-    group: async (id: number) => {
+    group: async (id: number): Promise<Group> => {
       const response = await get(`groups/${id}`)
       return groupSchema.parse(response.data)
     },
-    createGroup: async (request: GroupRequest) => {
+    createGroup: async (request: GroupRequest): Promise<Group> => {
       const response = await post('groups', { group: request })
       return groupSchema.parse(response.data)
     },
@@ -45,7 +45,7 @@ export default function createApi(baseUrl: string) {
     invite: async (groupId: number, request: InviteRequest) => {
       await post(`groups/${groupId}/participations`, { participation: request })
     },
-    participation: async (groupId: number) => {
+    participation: async (groupId: number): Promise<Participation> => {
       const response = await get(`groups/${groupId}/participations/own`)
       return participationSchema.parse(response.data)
     },
