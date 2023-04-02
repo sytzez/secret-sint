@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Group < ApplicationRecord
-  has_many :participations
+  has_many :participations, dependent: :destroy
   has_many :users, through: :participations
 
   validates :title, presence: true
