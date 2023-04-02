@@ -24,6 +24,7 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
     >
       <Input
         name="email"
+        type="email"
         label="Email"
         placeholder="Your email address"
         autocomplete="email"

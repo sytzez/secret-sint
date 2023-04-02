@@ -3,28 +3,23 @@ import { useContext, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { useNavigate } from 'react-router-dom'
+import useAsync from '../hooks/use-async'
 
 export default function SignUp() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
-  const [isLoading, setLoading] = useState(false)
-  const [error, setError] = useState('')
 
-  const onSubmit = async (request: SignUpRequest) => {
-    setLoading(true)
-    try {
+  const [submit, , isLoading, error] = useAsync(
+    async (request: SignUpRequest) => {
       await api.signUp(request)
       navigate('/groups')
-    } catch (e: { message: string }) {
-      setError(e.message)
-    }
-    setLoading(false)
-  }
+    },
+  )
 
   return (
     <>
       <h1 className="text-white text-2xl font-bold mb-4">Create an account</h1>
-      <SignUpForm onSubmit={onSubmit} isLoading={isLoading} />
+      <SignUpForm onSubmit={submit} isLoading={isLoading} />
       <p className="my-4 text-white">{error}</p>
       <button
         onClick={() => navigate('/login')}

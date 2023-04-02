@@ -12,7 +12,7 @@ export default function GroupDetail() {
   const navigate = useNavigate()
   const { groupId } = useParams()
 
-  const [loadGroup, group, , groupError] = useAsync(
+  const [loadGroup, group, , loadError] = useAsync(
     async () => await api.group(Number(groupId)),
   )
 
@@ -24,8 +24,7 @@ export default function GroupDetail() {
 
   useEffect(loadGroup, [groupId])
 
-  if (groupError) return <p className="text-white">{groupError}</p>
-
+  if (loadError) return <p className="text-white">{loadError}</p>
   if (!group) return <p className="text-white">Loading...</p>
 
   const canAssignSecretSints =
@@ -73,11 +72,11 @@ export default function GroupDetail() {
             disabled={!canAssignSecretSints || isLoadingSecretSints}
             style="primary"
           />
+          <ErrorText error={secretSintsError} />
           <p className="text-white mb-2">
             Once the Secret Sints have been assigned, you can not invite any
             more participants, nor can anyone change their wishlists.
           </p>
-          <ErrorText error={secretSintsError} />
         </>
       )}
       <div className="mt-6">

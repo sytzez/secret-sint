@@ -4,30 +4,25 @@ import { ApiContext } from '../contexts/api-context'
 import { useNavigate } from 'react-router-dom'
 import { GroupRequest } from '../schemata/group-request'
 import ErrorText from '../ErrorText'
+import useAsync from '../hooks/use-async'
 
 export default function NewGroup() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
-  const [isLoading, setLoading] = useState(false)
-  const [error, setError] = useState('')
 
-  const onSubmit = async (request: GroupRequest) => {
-    setLoading(true)
-    try {
+  const [submit, , isLoading, error] = useAsync(
+    async (request: GroupRequest) => {
       const group = await api.createGroup(request)
       navigate(`/groups/${group.id}`)
-    } catch (e) {
-      setError(e.message)
-    }
-    setLoading(false)
-  }
+    },
+  )
 
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-white text-2xl font-bold mb-2">New group</h1>
       <GroupForm
         submitLabel="Create group"
-        onSubmit={onSubmit}
+        onSubmit={submit}
         isLoading={isLoading}
       />
       <ErrorText error={error} />

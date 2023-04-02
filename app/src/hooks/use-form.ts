@@ -18,7 +18,14 @@ export default function useForm<T>(
       onSubmit(result.data)
     } else {
       console.error(data, values, result.error)
-      setError(result.error.format()._errors.join('. '))
+
+      const flatError = result.error.flatten()
+      const messages = [
+        ...flatError.formErrors,
+        ...Object.values(flatError.fieldErrors).flat(),
+      ]
+
+      setError(messages.join('. '))
     }
   }
 

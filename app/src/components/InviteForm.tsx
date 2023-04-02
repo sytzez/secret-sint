@@ -20,6 +20,7 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
     >
       <Input
         name="email"
+        type="email"
         label="Email address"
         placeholder="Their email address"
         autocomplete="none"

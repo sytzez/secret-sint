@@ -24,6 +24,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
     >
       <Input
         name="email"
+        type="email"
         label="Email"
         placeholder="Your email address"
         autocomplete="email"

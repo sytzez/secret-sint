@@ -5,37 +5,27 @@ import WishlistForm from '../components/WishlistForm'
 import { Participation } from '../schemata/participation'
 import { ParticipationRequest } from '../schemata/participation-request'
 import ErrorText from '../ErrorText'
+import useAsync from '../hooks/use-async'
 
 export default function EditWishlist() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
   const { groupId } = useParams()
-  const [participation, setParticipation] = useState<Participation>(null)
-  const [isLoading, setLoading] = useState(false)
-  const [error, setError] = useState('')
 
-  useEffect(() => {
-    api
-      .participation(Number(groupId))
-      .then(setParticipation)
-      .catch((e: { message: string }) => {
-        setError(e.message)
-      })
-  }, [groupId])
+  const [loadParticipation, participation, , loadError] = useAsync(
+    async () => await api.participation(Number(groupId)),
+  )
 
-  const onSubmit = async (request: ParticipationRequest) => {
-    setLoading(true)
-    try {
+  const [submit, , isSubmitting, submitError] = useAsync(
+    async (request: ParticipationRequest) => {
       await api.updateParticipation(Number(groupId), request)
-      navigate('./..')
-    } catch (e) {
-      setError(e.message)
-    }
-    setLoading(false)
-  }
+      navigate(`/groups/${groupId}`)
+    },
+  )
 
-  if (!participation && error) return <p className="text-white">{error}</p>
+  useEffect(loadParticipation, [groupId])
 
+  if (loadError) return <p className="text-white">{loadError}</p>
   if (!participation) return <p className="text-white">Loading</p>
 
   return (
@@ -45,11 +35,11 @@ export default function EditWishlist() {
         Your wishlist will only be visible to your Secret Sint.
       </p>
       <WishlistForm
-        onSubmit={onSubmit}
-        isLoading={isLoading}
+        onSubmit={submit}
+        isLoading={isSubmitting}
         value={participation.wishlist || ''}
       />
-      <ErrorText error={error} />
+      <ErrorText error={submitError} />
       <button
         className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
         onClick={() => navigate(`/groups/${groupId}`)}

@@ -2,25 +2,20 @@ import { useContext, useEffect, useState } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { Group } from '../schemata/group'
 import { useNavigate } from 'react-router-dom'
+import useAsync from "../hooks/use-async";
 
 export default function Groups() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
-  const [groups, setGroups] = useState<Group[] | null>(null)
-  const [error, setError] = useState('')
 
-  useEffect(() => {
-    api
-      .groups()
-      .then(setGroups)
-      .catch((e: { message: string }) => {
-        setError(e.message)
-      })
-  }, [])
+  const [loadGroups, groups, , error] = useAsync(
+    async () => await api.groups()
+  )
+  
+  useEffect(loadGroups, [])
 
   if (error) return <p className="text-white">{error}</p>
-
-  if (!groups) return <p className="text-white">Loading</p>
+  if (!groups) return <p className="text-white">Loading...</p>
 
   return (
     <div className="flex gap-2 flex-col">

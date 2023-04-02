@@ -3,28 +3,23 @@ import { ApiContext } from '../contexts/api-context'
 import LogInForm from '../components/LogInForm'
 import { LogInRequest } from '../schemata/log-in-request'
 import { useNavigate } from 'react-router-dom'
+import useAsync from '../hooks/use-async'
 
 export default function LogIn() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
-  const [isLoading, setLoading] = useState(false)
-  const [error, setError] = useState('')
 
-  const onSubmit = async (request: LogInRequest) => {
-    setLoading(true)
-    try {
+  const [submit, , isLoading, error] = useAsync(
+    async (request: LogInRequest) => {
       await api.logIn(request)
       navigate('/groups')
-    } catch (e: { message: string }) {
-      setError(e.message)
-    }
-    setLoading(false)
-  }
+    },
+  )
 
   return (
     <>
       <h1 className="text-white text-2xl font-bold mb-4">Welcome back</h1>
-      <LogInForm onSubmit={onSubmit} isLoading={isLoading} />
+      <LogInForm onSubmit={submit} isLoading={isLoading} />
       <p className="my-4 text-white">{error}</p>
       <button
         onClick={() => navigate('/signup')}
