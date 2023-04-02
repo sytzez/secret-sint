@@ -14,8 +14,8 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create group' do
     assert_difference('Group.count') do
-      post groups_url,
-           params: { group: { deadline: @group.deadline, has_started: @group.has_started, title: @group.title } }, as: :json
+      params = { group: { deadline: @group.deadline, has_started: @group.has_started, title: @group.title } }
+      post groups_url, params: params, as: :json
     end
 
     assert_response :created
@@ -27,8 +27,8 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update group' do
-    patch group_url(@group),
-          params: { group: { deadline: @group.deadline, has_started: @group.has_started, title: @group.title } }, as: :json
+    params = { group: { deadline: @group.deadline, has_started: @group.has_started, title: @group.title } }
+    patch group_url(@group), params: params, as: :json
     assert_response :success
   end
 
