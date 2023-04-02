@@ -1,4 +1,5 @@
 import { User } from '../schemata/user'
+import Button from './Button'
 
 export interface ParticipantsListProps {
   users: User[]
@@ -24,13 +25,7 @@ export default function ParticipantsList({
         ))}
       </ul>
       {canAdd && (
-        <button
-          type="button"
-          className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mb-2"
-          onClick={onAdd}
-        >
-          Add participants
-        </button>
+        <Button label="Add participants" onClick={onAdd} style="secondary" />
       )}
     </>
   )
