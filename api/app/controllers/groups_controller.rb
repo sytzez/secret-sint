@@ -43,8 +43,6 @@ class GroupsController < ApplicationController
     service.validate!
     service.call
     render json: { success: true }
-  rescue AssignSecretSintsError => e
-    render json: { success: false, message: e.message }, status: :unprocessable_entity
   end
 
   private

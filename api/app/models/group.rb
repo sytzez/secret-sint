@@ -20,4 +20,10 @@ class Group < ApplicationRecord
     participations.where(present_status: Participation.present_statuses[:delivered])
                   .count
   end
+
+  def invite!(user)
+    raise InvitationError, 'This user is already part of the group' if participations.exists?(user_id: user.id)
+
+    participations.create(user: @invited_user)
+  end
 end

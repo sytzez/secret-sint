@@ -14,20 +14,7 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    if @invited_user.blank?
-      render json: { success: false, message: "This user doesn't have an account in the app" },
-             status: :unprocessable_entity
-      return
-    end
-
-    if @group.users.exists?(user.id)
-      render json: { success: false, message: 'This user is already part of the group' }, status: :unprocessable_entity
-      return
-    end
-
-    @participation = @group.participations.build(user: @invited_user)
-
-    if @participation.save
+    if @group.invite!(@invited_user)
       render json: { success: true, data: @participation }, status: :created, location: [@group, @participation]
     else
       render json: { success: false, message: @participation.errors.full_messages.join('. ') },
@@ -73,6 +60,8 @@ class ParticipationsController < ApplicationController
 
   def set_invited_user
     @invited_user = User.find_by(email: invitation_params[:email])
+  rescue ActiveRecord::NotFoundException
+    raise InvitationError, "This user doesn't have an account in the app"
   end
 
   def own_participation_params
