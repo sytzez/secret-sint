@@ -14,7 +14,7 @@ class Group < ApplicationRecord
   def ordered_count
     statuses = [
       Participation.present_statuses[:ordered],
-      Participation.present_statuses[:delivered],
+      Participation.present_statuses[:delivered]
     ]
 
     participations.where(present_status: statuses).count
