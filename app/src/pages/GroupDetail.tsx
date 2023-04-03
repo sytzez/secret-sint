@@ -19,7 +19,7 @@ export default function GroupDetail() {
   const [assignSecretSints, , isLoadingSecretSints, secretSintsError] =
     useAsync(async () => {
       await api.assignSecretSints(group!.id)
-      navigate('.')
+      loadGroup()
     })
 
   useEffect(loadGroup, [groupId])
@@ -51,7 +51,7 @@ export default function GroupDetail() {
           />
           <Button
             label="Update your present status"
-            onClick={() => {}}
+            onClick={() => navigate(`/groups/${group.id}/present-status`)}
             style="secondary"
           />
         </>

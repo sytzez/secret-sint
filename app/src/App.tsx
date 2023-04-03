@@ -7,6 +7,7 @@ import GroupDetail from './pages/GroupDetail'
 import InviteParticipant from './pages/InviteParticipant'
 import EditWishlist from './pages/EditWishlist'
 import AssigneeDetails from './pages/AssigneeDetails'
+import EditPresentStatus from "./pages/EditPresentStatus";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             path="/groups/:groupId/assignee"
             element={<AssigneeDetails />}
           />
+          <Route path="/groups/:groupId/present-status" element={<EditPresentStatus />} />
         </Routes>
       </BrowserRouter>
     </div>

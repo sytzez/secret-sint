@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { ApiContext } from '../contexts/api-context'
-import WishlistForm from '../components/WishlistForm'
-import { ParticipationRequest } from '../schemata/participation-request'
-import ErrorText from '../components/ErrorText'
-import useAsync from '../hooks/use-async'
+import { useContext, useEffect } from "react";
+import { ApiContext } from "../contexts/api-context";
+import { useNavigate } from "react-router-dom";
 import useGroupId from "../hooks/use-group-id";
+import useAsync from "../hooks/use-async";
+import { ParticipationRequest } from "../schemata/participation-request";
+import ErrorText from "../components/ErrorText";
+import PresentStatusForm from "../components/PresentStatusForm";
 
-export default function EditWishlist() {
+export default function EditPresentStatus() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
   const groupId = useGroupId()
@@ -30,14 +30,11 @@ export default function EditWishlist() {
 
   return (
     <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-2">Your wishlist</h1>
-      <p className="text-white mb-2">
-        Your wishlist will only be visible to your Secret Sint.
-      </p>
-      <WishlistForm
+      <h1 className="text-white text-2xl font-bold mb-2">Present status</h1>
+      <PresentStatusForm
         onSubmit={submit}
         isLoading={isSubmitting}
-        value={participation.wishlist || ''}
+        value={participation}
       />
       <ErrorText error={submitError} />
       <button
