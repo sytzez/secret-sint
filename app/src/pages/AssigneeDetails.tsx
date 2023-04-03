@@ -22,11 +22,11 @@ export default function AssigneeDetails() {
     <div className="flex gap-2 flex-col">
       <h1 className="text-white text-2xl font-bold mb-4">Your assignee</h1>
       <p className="text-white">You are assigned to:</p>
-      <p className="text-white text-center text-yellow-200 mb-2">
+      <p className="text-center text-yellow-200 mb-2">
         {participant.user.email}
       </p>
       <p className="text-white">This is their wishlist:</p>
-      <p className="text-white text-yellow-200 mb-2 px-6 whitespace-pre">
+      <p className="text-yellow-200 mb-2 px-6 whitespace-pre">
         {participant.wishlist!}
       </p>
       <div className="mt-6">
