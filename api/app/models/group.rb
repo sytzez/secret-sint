@@ -24,6 +24,6 @@ class Group < ApplicationRecord
   def invite!(user)
     raise InvitationError, 'This user is already part of the group' if participations.exists?(user_id: user.id)
 
-    participations.create(user: @invited_user)
+    participations.create(user: user)
   end
 end
