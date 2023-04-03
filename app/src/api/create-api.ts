@@ -5,14 +5,16 @@ import { LogInRequest } from '../schemata/log-in-request'
 import { GroupRequest } from '../schemata/group-request'
 import { InviteRequest } from '../schemata/invite-request'
 import { ParticipationRequest } from '../schemata/participation-request'
+import { call } from "./call";
 
 export type Api = ReturnType<typeof createApi>
 
 export default function createApi(baseUrl: string) {
-  const post = apiMethod(baseUrl, 'POST')
-  const patch = apiMethod(baseUrl, 'PATCH')
-  const get = apiMethod(baseUrl, 'GET')
-  const del = apiMethod(baseUrl, 'DELETE')
+  const method = call(baseUrl)
+  const post = method('POST')
+  const patch = method('PATCH')
+  const get = method('GET')
+  const del = method('DELETE')
 
   return {
     signUp: async (request: SignUpRequest) => {
@@ -63,30 +65,3 @@ export default function createApi(baseUrl: string) {
     },
   }
 }
-
-const apiMethod =
-  (baseUrl: string, method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
-  (route: string, body: object | null = null) =>
-    fetch(`${baseUrl}/${route}`, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: body ? JSON.stringify(body) : undefined,
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .catch((e) => {
-        console.error(e)
-        throw new Error('Something went wrong, try again later')
-      })
-      .then((response) => {
-        if (response.error) {
-          throw new Error(response.error)
-        }
-        if (!response.success) {
-          throw new Error(response.message)
-        }
-        return response
-      })
