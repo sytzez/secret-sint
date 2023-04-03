@@ -23,16 +23,20 @@ export default function PresentStatusForm({
 
   return (
     <Form
-      submitLabel="Save wishlist"
+      submitLabel="Update present status"
       onSubmit={submit}
       isLoading={isLoading}
       error={error}
     >
+      <label htmlFor="present_status" className="text-white">
+        The status of your present
+      </label>
       <select
         required
         id="present_status"
         name="present_status"
         defaultValue={value.present_status}
+        className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2 cursor-pointer appearance-none"
       >
         <option value="not_started">Not started</option>
         <option value="ordered">Ordered</option>
