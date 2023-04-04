@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-export default function useAsync<T, U>(
-  call: (param: U) => Promise<T>,
-): [(param?: U) => () => void, T | null, boolean, string] {
+export default function useAsync<T, U>(call: (param: U) => Promise<T>) {
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [result, setResult] = useState<T | null>(null)
@@ -21,8 +19,10 @@ export default function useAsync<T, U>(
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
 
-    return () => (isCurrent = false)
+    return () => {
+      isCurrent = false
+    }
   }
 
-  return [go, result, isLoading, error]
+  return { go, result, isLoading, error }
 }

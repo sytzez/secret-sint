@@ -12,16 +12,20 @@ export default function EditPresentStatus() {
   const navigate = useNavigate()
   const groupId = useGroupId()
 
-  const [loadParticipation, participation, , loadError] = useAsync(
-    async () => await api.participation(groupId),
-  )
+  const {
+    go: loadParticipation,
+    result: participation,
+    error: loadError,
+  } = useAsync(async () => await api.participation(groupId))
 
-  const [submit, , isSubmitting, submitError] = useAsync(
-    async (request: ParticipationRequest) => {
-      await api.updateParticipation(groupId, request)
-      navigate(`/groups/${groupId}`)
-    },
-  )
+  const {
+    go: submit,
+    isLoading: isSubmitting,
+    error: submitError,
+  } = useAsync(async (request: ParticipationRequest) => {
+    await api.updateParticipation(groupId, request)
+    navigate(`/groups/${groupId}`)
+  })
 
   useEffect(loadParticipation, [groupId])
 

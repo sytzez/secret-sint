@@ -10,12 +10,14 @@ export default function NewGroup() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
 
-  const [submit, , isLoading, error] = useAsync(
-    async (request: GroupRequest) => {
-      const group = await api.createGroup(request)
-      navigate(`/groups/${group.id}`)
-    },
-  )
+  const {
+    go: submit,
+    isLoading,
+    error,
+  } = useAsync(async (request: GroupRequest) => {
+    const group = await api.createGroup(request)
+    navigate(`/groups/${group.id}`)
+  })
 
   return (
     <div className="flex gap-2 flex-col">

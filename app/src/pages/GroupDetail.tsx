@@ -12,15 +12,20 @@ export default function GroupDetail() {
   const navigate = useNavigate()
   const { groupId } = useParams()
 
-  const [loadGroup, group, , loadError] = useAsync(
-    async () => await api.group(Number(groupId)),
-  )
+  const {
+    go: loadGroup,
+    result: group,
+    error: loadError,
+  } = useAsync(async () => await api.group(Number(groupId)))
 
-  const [assignSecretSints, , isLoadingSecretSints, secretSintsError] =
-    useAsync(async () => {
-      await api.assignSecretSints(group!.id)
-      loadGroup()
-    })
+  const {
+    go: assignSecretSints,
+    isLoading: isLoadingSecretSints,
+    error: secretSintsError,
+  } = useAsync(async () => {
+    await api.assignSecretSints(group!.id)
+    loadGroup()
+  })
 
   useEffect(loadGroup, [groupId])
 

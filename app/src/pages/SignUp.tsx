@@ -4,18 +4,20 @@ import { ApiContext } from '../contexts/api-context'
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
-import ErrorText from "../components/ErrorText";
+import ErrorText from '../components/ErrorText'
 
 export default function SignUp() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
 
-  const [submit, , isLoading, error] = useAsync(
-    async (request: SignUpRequest) => {
-      await api.signUp(request)
-      navigate('/groups')
-    },
-  )
+  const {
+    go: submit,
+    isLoading,
+    error,
+  } = useAsync(async (request: SignUpRequest) => {
+    await api.signUp(request)
+    navigate('/groups')
+  })
 
   return (
     <>

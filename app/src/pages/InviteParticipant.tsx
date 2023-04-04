@@ -11,12 +11,14 @@ export default function InviteParticipant() {
   const navigate = useNavigate()
   const { groupId } = useParams()
 
-  const [submit, , isLoading, error] = useAsync(
-    async (request: InviteRequest) => {
-      await api.invite(Number(groupId), request)
-      navigate(`/groups/${groupId}`)
-    },
-  )
+  const {
+    go: submit,
+    isLoading,
+    error,
+  } = useAsync(async (request: InviteRequest) => {
+    await api.invite(Number(groupId), request)
+    navigate(`/groups/${groupId}`)
+  })
 
   return (
     <div className="flex gap-2 flex-col">

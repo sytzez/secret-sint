@@ -9,9 +9,11 @@ export default function AssigneeDetails() {
   const navigate = useNavigate()
   const { groupId } = useParams()
 
-  const [loadParticipant, participant, , error] = useAsync(
-    async () => await api.assignee(Number(groupId)),
-  )
+  const {
+    go: loadParticipant,
+    result: participant,
+    error,
+  } = useAsync(async () => await api.assignee(Number(groupId)))
 
   useEffect(loadParticipant, [groupId])
 

@@ -4,18 +4,20 @@ import LogInForm from '../components/LogInForm'
 import { LogInRequest } from '../schemata/log-in-request'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
-import ErrorText from "../components/ErrorText";
+import ErrorText from '../components/ErrorText'
 
 export default function LogIn() {
   const api = useContext(ApiContext)
   const navigate = useNavigate()
 
-  const [submit, , isLoading, error] = useAsync(
-    async (request: LogInRequest) => {
-      await api.logIn(request)
-      navigate('/groups')
-    },
-  )
+  const {
+    go: submit,
+    isLoading,
+    error,
+  } = useAsync(async (request: LogInRequest) => {
+    await api.logIn(request)
+    navigate('/groups')
+  })
 
   return (
     <>
