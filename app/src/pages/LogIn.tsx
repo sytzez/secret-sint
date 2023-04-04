@@ -4,6 +4,7 @@ import LogInForm from '../components/LogInForm'
 import { LogInRequest } from '../schemata/log-in-request'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
+import ErrorText from "../components/ErrorText";
 
 export default function LogIn() {
   const api = useContext(ApiContext)
@@ -20,7 +21,7 @@ export default function LogIn() {
     <>
       <h1 className="text-white text-2xl font-bold mb-4">Welcome back</h1>
       <LogInForm onSubmit={submit} isLoading={isLoading} />
-      <p className="my-4 text-white">{error}</p>
+      <ErrorText error={error} />
       <button
         onClick={() => navigate('/signup')}
         className="text-white underline hover:text-yellow-200"

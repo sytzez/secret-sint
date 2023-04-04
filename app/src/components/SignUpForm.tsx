@@ -11,7 +11,7 @@ export interface SignUpFormProps {
 export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
   const [submit, error] = useForm(
     signUpRequestSchema,
-    ['email', 'password'],
+    ['email', 'password', 'password_confirmation'],
     onSubmit,
   )
 
@@ -37,6 +37,14 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         label="Password"
         placeholder="Your password"
         autocomplete="new-password"
+        disabled={isLoading}
+      />
+      <Input
+        name="password_confirmation"
+        label="Confirm password"
+        type="password"
+        placeholder="Your password"
+        autocomplete="password"
         disabled={isLoading}
       />
     </Form>

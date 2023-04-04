@@ -9,6 +9,7 @@ export default function useAsync<T, U>(
 
   const go = (param?: U) => {
     setLoading(true)
+    setError('')
 
     let isCurrent = true
 

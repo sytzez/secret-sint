@@ -4,6 +4,7 @@ import { ApiContext } from '../contexts/api-context'
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
+import ErrorText from "../components/ErrorText";
 
 export default function SignUp() {
   const api = useContext(ApiContext)
@@ -20,7 +21,7 @@ export default function SignUp() {
     <>
       <h1 className="text-white text-2xl font-bold mb-4">Create an account</h1>
       <SignUpForm onSubmit={submit} isLoading={isLoading} />
-      <p className="my-4 text-white">{error}</p>
+      <ErrorText error={error} />
       <button
         onClick={() => navigate('/login')}
         className="text-white underline hover:text-yellow-200"

@@ -9,6 +9,8 @@ export default function useForm<T>(
   const [error, setError] = useState('')
 
   const submit = (data: FormData) => {
+    setError('')
+
     const values: { [key: string]: any } = {}
     keys.forEach((key) => (values[key] = data.get(key)))
 
