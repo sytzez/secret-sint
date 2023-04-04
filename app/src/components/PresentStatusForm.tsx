@@ -1,14 +1,16 @@
-import { ParticipationRequest, participationRequestSchema } from "../schemata/participation-request";
-import { Participation } from "../schemata/participation";
-import useForm from "../hooks/use-form";
-import Form from "./Form";
+import {
+  ParticipationRequest,
+  participationRequestSchema,
+} from '../schemata/participation-request'
+import { Participation } from '../schemata/participation'
+import useForm from '../hooks/use-form'
+import Form from './Form'
 
 export interface PresentStatusFormProps {
   onSubmit: (data: ParticipationRequest) => void
   isLoading: boolean
   value: Participation
 }
-
 
 export default function PresentStatusForm({
   onSubmit,

@@ -5,7 +5,7 @@ import WishlistForm from '../components/WishlistForm'
 import { ParticipationRequest } from '../schemata/participation-request'
 import ErrorText from '../components/ErrorText'
 import useAsync from '../hooks/use-async'
-import useGroupId from "../hooks/use-group-id";
+import useGroupId from '../hooks/use-group-id'
 
 export default function EditWishlist() {
   const api = useContext(ApiContext)

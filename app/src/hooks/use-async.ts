@@ -20,7 +20,7 @@ export default function useAsync<T, U>(
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
 
-    return () => isCurrent = false
+    return () => (isCurrent = false)
   }
 
   return [go, result, isLoading, error]

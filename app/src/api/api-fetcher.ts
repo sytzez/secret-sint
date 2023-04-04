@@ -1,5 +1,9 @@
-export const call =
-  (baseUrl: string) =>
+import { ApiParams } from './create-api'
+
+const authErrorStatusCodes = [401, 403]
+
+export const apiFetcher =
+  ({ baseUrl, onAuthError }: ApiParams) =>
   (method: 'POST' | 'GET' | 'DELETE' | 'PATCH') =>
   (route: string, body: object | null = null) =>
     fetch(`${baseUrl}/${route}`, {
@@ -11,7 +15,13 @@ export const call =
       body: body ? JSON.stringify(body) : undefined,
       credentials: 'include',
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (authErrorStatusCodes.includes(response.status)) {
+          onAuthError()
+          throw new Error('You need to be logged in to do this.')
+        }
+        return response.json()
+      })
       .catch((e) => {
         console.error(e)
         throw new Error('Something went wrong, try again later')

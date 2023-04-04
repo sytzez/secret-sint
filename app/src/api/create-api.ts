@@ -1,20 +1,25 @@
-import { Group, groupSchema } from "../schemata/group";
-import { Participation, participationSchema } from "../schemata/participation";
+import { Group, groupSchema } from '../schemata/group'
+import { Participation, participationSchema } from '../schemata/participation'
 import { SignUpRequest } from '../schemata/sign-up-request'
 import { LogInRequest } from '../schemata/log-in-request'
 import { GroupRequest } from '../schemata/group-request'
 import { InviteRequest } from '../schemata/invite-request'
 import { ParticipationRequest } from '../schemata/participation-request'
-import { call } from "./call";
+import { apiFetcher } from './api-fetcher'
 
 export type Api = ReturnType<typeof createApi>
 
-export default function createApi(baseUrl: string) {
-  const method = call(baseUrl)
-  const post = method('POST')
-  const patch = method('PATCH')
-  const get = method('GET')
-  const del = method('DELETE')
+export interface ApiParams {
+  baseUrl: string
+  onAuthError: () => void
+}
+
+export default function createApi(apiParams: ApiParams) {
+  const fetcher = apiFetcher(apiParams)
+  const post = fetcher('POST')
+  const patch = fetcher('PATCH')
+  const get = fetcher('GET')
+  const del = fetcher('DELETE')
 
   return {
     signUp: async (request: SignUpRequest) => {

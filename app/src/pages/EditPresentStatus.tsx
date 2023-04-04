@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
-import { ApiContext } from "../contexts/api-context";
-import { useNavigate } from "react-router-dom";
-import useGroupId from "../hooks/use-group-id";
-import useAsync from "../hooks/use-async";
-import { ParticipationRequest } from "../schemata/participation-request";
-import ErrorText from "../components/ErrorText";
-import PresentStatusForm from "../components/PresentStatusForm";
+import { useContext, useEffect } from 'react'
+import { ApiContext } from '../contexts/api-context'
+import { useNavigate } from 'react-router-dom'
+import useGroupId from '../hooks/use-group-id'
+import useAsync from '../hooks/use-async'
+import { ParticipationRequest } from '../schemata/participation-request'
+import ErrorText from '../components/ErrorText'
+import PresentStatusForm from '../components/PresentStatusForm'
 
 export default function EditPresentStatus() {
   const api = useContext(ApiContext)
