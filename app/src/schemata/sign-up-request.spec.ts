@@ -10,6 +10,7 @@ describe('signUpRequestSchema', () => {
     }
     expect(signUpRequestSchema.parse(request)).toEqual(request)
   })
+
   it('errors on a too short password', () => {
     const request = {
       email: 'alice@test.com',
@@ -18,6 +19,7 @@ describe('signUpRequestSchema', () => {
     }
     expect(signUpRequestSchema.safeParse(request).success).toBeFalsy()
   })
+
   it('errors on mismatching passwords', () => {
     const request = {
       email: 'alice@test.com',

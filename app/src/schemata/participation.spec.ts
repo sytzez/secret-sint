@@ -12,6 +12,7 @@ describe('participationSchema', () => {
     }
     expect(participationSchema.parse(participation)).toEqual(participation)
   })
+
   it('validates a participation with a wishlist', () => {
     const participation = {
       wishlist: 'My wishlist',
@@ -22,6 +23,7 @@ describe('participationSchema', () => {
     }
     expect(participationSchema.parse(participation)).toEqual(participation)
   })
+
   it('errors on an incomplete participation', () => {
     const participation = {}
     expect(participationSchema.safeParse(participation).success).toBeFalsy()

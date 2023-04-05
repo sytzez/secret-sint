@@ -10,6 +10,7 @@ describe('groupSchema', () => {
     }
     expect(groupSchema.parse(group)).toEqual(group)
   })
+
   it('validates a complete group', () => {
     const group = {
       id: 123,
@@ -22,6 +23,7 @@ describe('groupSchema', () => {
     }
     expect(groupSchema.parse(group)).toEqual(group)
   })
+
   it('errors on an incomplete group', () => {
     const group = {}
     expect(groupSchema.safeParse(group).success).toBeFalsy()

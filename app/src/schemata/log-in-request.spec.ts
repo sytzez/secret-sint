@@ -9,6 +9,7 @@ describe('logInRequestSchema', () => {
     }
     expect(logInRequestSchema.parse(request)).toEqual(request)
   })
+
   it('errors on an incomplete request', () => {
     const request = {
       email: '',

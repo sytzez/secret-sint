@@ -6,6 +6,7 @@ describe('groupRequestSchema', () => {
     const request = { title: 'a group ' }
     expect(groupRequestSchema.parse(request)).toEqual(request)
   })
+
   it('errors on an incomplete request', () => {
     const request = { title: '' }
     expect(groupRequestSchema.safeParse(request).success).toBeFalsy()

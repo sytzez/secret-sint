@@ -7,6 +7,7 @@ describe('presentStatusSchema', () => {
     expect(presentStatusSchema.parse('ordered')).toBe('ordered')
     expect(presentStatusSchema.parse('delivered')).toBe('delivered')
   })
+
   it('errors on invalid values', () => {
     expect(presentStatusSchema.safeParse('').success).toBeFalsy()
     expect(presentStatusSchema.safeParse('invalid').success).toBeFalsy()

@@ -8,12 +8,14 @@ describe('participationRequestSchema', () => {
     }
     expect(participationRequestSchema.parse(request)).toEqual(request)
   })
+
   it('validates a request with present_status', () => {
     const request = {
       present_status: 'ordered',
     }
     expect(participationRequestSchema.parse(request)).toEqual(request)
   })
+
   it('errors on an invalid request', () => {
     const request = {
       present_status: 'invalid',
