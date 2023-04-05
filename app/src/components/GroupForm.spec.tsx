@@ -22,6 +22,7 @@ describe('<GroupForm />', () => {
     expect(submitMock).toBeCalledWith({ title: 'A new group' })
     unmount()
   })
+
   it('does not submit when the form is not filled in', async () => {
     const submitMock = vi.fn()
     const { unmount, findByText } = render(

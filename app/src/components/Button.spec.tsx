@@ -13,6 +13,7 @@ describe('<Button />', () => {
     expect(clickMock).toBeCalled()
     unmount()
   })
+
   it("doesn't fire onClick when disabled", async () => {
     const clickMock = vi.fn()
     const { findByText, unmount } = render(

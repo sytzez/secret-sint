@@ -30,16 +30,19 @@ describe('<Form />', () => {
     expect(findByText('Child node')).not.toBeNull()
     unmount()
   })
+
   it('shows the submit label', () => {
     const { unmount, findByText } = initialize()
     expect(findByText('Submit it!')).not.toBeNull()
     unmount()
   })
+
   it('shows an error', () => {
     const { unmount, findByText } = initialize({ error: 'Uh oh!' })
     expect(findByText('Uh oh!')).not.toBeNull()
     unmount()
   })
+
   it('sends onSubmit when submitted', async () => {
     const submitMock = vi.fn()
     const { unmount, findByText, queryByText } = initialize({ submitMock })
@@ -49,6 +52,7 @@ describe('<Form />', () => {
     expect(submitMock).toBeCalled()
     unmount()
   })
+
   it('does not send onSubmit when loading', async () => {
     const submitMock = vi.fn()
     const { unmount, findByText, queryByText } = initialize({
