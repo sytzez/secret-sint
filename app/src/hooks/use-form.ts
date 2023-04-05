@@ -19,8 +19,6 @@ export default function useForm<T>(
     if (result.success) {
       onSubmit(result.data)
     } else {
-      console.error(data, values, result.error)
-
       const flatError = result.error.flatten()
       const messages = [
         ...flatError.formErrors,
