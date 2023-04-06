@@ -33,7 +33,6 @@ describe('/groups/:groupId/wishlist', async () => {
 
     const submitButton = queryByText('Save wishlist')!
     fireEvent.click(submitButton)
-    await new Promise((r) => setTimeout(r))
 
     expect(mockApi.updateParticipation).toBeCalledWith(123, {
       wishlist: 'My wishlist 2',

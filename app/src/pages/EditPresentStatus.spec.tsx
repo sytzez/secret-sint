@@ -33,7 +33,6 @@ describe('/groups/:groupId/present-status', async () => {
 
     const submitButton = queryByText('Update present status')!
     fireEvent.click(submitButton)
-    await new Promise((r) => setTimeout(r))
 
     expect(mockApi.updateParticipation).toBeCalledWith(123, {
       present_status: 'ordered',
