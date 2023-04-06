@@ -1,12 +1,17 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, Mock, vi } from 'vitest'
 import createApi from './create-api'
 
 describe('createApi', () => {
-  const api = createApi({ baseUrl: 'example.com', onAuthError: () => {} })
+  const api = createApi({
+    baseUrl: 'example.com',
+    onAuthError: () => {
+      /* do nothing */
+    },
+  })
 
-  let fetchMock: any
+  let fetchMock: Mock
 
-  const mockFetch = (response: any) => {
+  const mockFetch = (response: object) => {
     fetchMock = vi.fn(
       () =>
         new Promise((resolve) => {
@@ -17,11 +22,10 @@ describe('createApi', () => {
           resolve(responseObject)
         }),
     )
-    // @ts-ignore mocks the Fetch API
     global.fetch = fetchMock
   }
 
-  const expectFetchCall = (method: string, url: string, body?: any) => {
+  const expectFetchCall = (method: string, url: string, body?: object) => {
     expect(fetchMock).toBeCalledWith(url, {
       method,
       body: JSON.stringify(body),

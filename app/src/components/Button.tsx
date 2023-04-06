@@ -7,7 +7,7 @@ const styles = {
 
 export interface ButtonProps {
   label: string
-  onClick: () => void
+  onClick?: () => void
   style: keyof typeof styles
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset'

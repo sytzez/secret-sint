@@ -8,7 +8,9 @@ describe('<ParticipantsList />', () => {
       <ParticipantsList
         users={[{ email: 'alice@test.com' }, { email: 'bob@test.com' }]}
         canAdd={true}
-        onAdd={() => {}}
+        onAdd={() => {
+          /* do nothing */
+        }}
       />,
     )
     expect(queryByText('alice@test.com')).not.toBeNull()
@@ -29,7 +31,13 @@ describe('<ParticipantsList />', () => {
 
   it('does not show an add button if that was not enabled', () => {
     const { unmount, queryByText } = render(
-      <ParticipantsList users={[]} canAdd={false} onAdd={() => {}} />,
+      <ParticipantsList
+        users={[]}
+        canAdd={false}
+        onAdd={() => {
+          /* do nothing */
+        }}
+      />,
     )
     expect(queryByText('Add participants')).toBeNull()
     unmount()

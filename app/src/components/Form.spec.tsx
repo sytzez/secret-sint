@@ -6,7 +6,9 @@ describe('<Form />', () => {
   const initialize = (props: object = {}) => {
     const { submitMock, isLoading, error } = Object.assign(
       {
-        submitMock: () => {},
+        submitMock: () => {
+          /* do nothing */
+        },
         isLoading: false,
         error: '',
       },

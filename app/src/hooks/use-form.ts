@@ -11,6 +11,7 @@ export default function useForm<T>(
   const submit = (data: FormData) => {
     setError('')
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const values: { [key: string]: any } = {}
     keys.forEach((key) => (values[key] = data.get(key)))
 

@@ -31,7 +31,6 @@ export default function Form({
         type="submit"
         style="primary"
         label={isLoading ? '...' : submitLabel}
-        onClick={() => {}}
         disabled={isLoading}
       />
       <ErrorText error={error} />

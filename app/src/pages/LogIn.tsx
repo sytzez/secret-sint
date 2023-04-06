@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import LogInForm from '../components/LogInForm'
 import { LogInRequest } from '../schemata/log-in-request'
