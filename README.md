@@ -101,6 +101,7 @@ Parallel series of source files exist for dealing with *users*, *invitations*, *
   - Database migration `ActiveRecord` - [20230331183825_create_groups.rb](api/db/migrate/20230331183825_create_groups.rb)
   - Object relational model `ActiveRecord` - [group.rb](api/app/models/group.rb)
   - TODO: specs, factories, seeds...
+  - Assign Sints Service - [assign_secret_sints_service.rb](api/app/services/assign_secret_sints_service.rb)
   - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb)
   - Base controller `ActiveController` - [application_controller.rb](api/app/controllers/application_controller.rb) -
     *Catches some exceptions to return meaningful responses.*
