@@ -13,13 +13,48 @@ and follows Rails and React best-practises. The code is clear and self-documenti
 The code quality has been measured using [these metrics](#code-quality-metrics).
 
 ## Table of Contents
-
+- [Getting started](#getting-started)
 - [Technologies used](#technologies-used)
 - [Code quality metrics](#code-quality-metrics)
 - [Screenshots](#screenshots)
 - [Domain model](#domain-model)
 - [Data model](#data-model)
 - [Code examples: groups](#code-examples-groups)
+
+## Getting started
+
+Install Ruby Gems and migrate the database.
+
+```bash
+cd app
+bundle
+rails db:migrate
+cd ..
+```
+
+Install NPM packages.
+
+```bash
+cd api
+npm install
+cd ..
+```
+
+Serve the API.
+
+```bash
+cd api
+rails server
+```
+
+In another process, serve the app.
+
+```bash
+cd app
+npm run dev
+```
+
+Open the app in your browser at http://127.0.0.1:5173/.
 
 ## Technologies used
 
