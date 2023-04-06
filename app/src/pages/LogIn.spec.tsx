@@ -1,30 +1,35 @@
 import { describe, expect, it, vi } from 'vitest'
 import { fireEvent, render } from '@testing-library/react'
 import { ApiContext } from '../contexts/api-context'
+import { Api } from '../api/create-api'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
-import { Api } from '../api/create-api'
 
-describe('/groups/:groupId/invite', async () => {
-  it('can send an invite', async () => {
-    const mockApi = { invite: vi.fn() }
+describe('/login', () => {
+  it('can send a login request', async () => {
+    const mockApi = { logIn: vi.fn() }
 
     const { unmount, findByLabelText, findByText } = render(
       <ApiContext.Provider value={mockApi as unknown as Api}>
-        <MemoryRouter initialEntries={['/groups/123/invite']}>
+        <MemoryRouter initialEntries={['/login']}>
           <App />
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
 
-    const emailField = await findByLabelText('Email address')
+    const emailField = await findByLabelText('Email')
     fireEvent.change(emailField, { target: { value: 'bob@test.com' } })
 
-    const submitButton = await findByText('Invite')
+    const passwordField = await findByLabelText('Password')
+    fireEvent.change(passwordField, { target: { value: 'topsecret' } })
+
+    const submitButton = await findByText('Log in')
     fireEvent.click(submitButton)
 
-    expect(mockApi.invite).toBeCalledWith(123, { email: 'bob@test.com' })
+    expect(mockApi.logIn).toBeCalledWith({
+      email: 'bob@test.com',
+      password: 'topsecret',
+    })
 
     unmount()
   })
