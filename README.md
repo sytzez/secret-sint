@@ -1,10 +1,26 @@
 # Secret Sint
 
+The Dutch version of Secret Santa, allowing users to form groups and track the delivery of their presents.
 
+A fully fledged React app backed by a Ruby on Rails API.
+Across the whole stack, the code is well-formatted, well-structured and well-tested, as can been seen in the [code examples](#code-examples-groups).
+
+The architecture of the project demonstrates 
+[separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) and
+[loose coupling](https://en.wikipedia.org/wiki/Loose_coupling), 
+and follows Rails and React best-pactises. The code is clear and self-documenting, requiring few comments.
+
+## Table of Contents
+
+- [Technologies used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Domain model](#domain-model)
+- [Code examples: groups](#code-examples-groups)
+- [Data model](#data-model)
 
 ## Technologies used
 
-`Ruby` `Rails` `TypeScript` `React` `JSX` `React Router` `Zod` `Vite` `Vitest` `React testing library`
+`Ruby` `Rails` `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
 ## Screenshots
 
@@ -44,7 +60,7 @@ This domain model specifies the Domain Specific Language of the app.
 These are the source files involved with displaying and mutating *groups* (DSL),
 showing the processes and technologies used across the whole stack.
 
-At every significant step, the behavior is tested at the appropriate level using specs.
+At every significant step, the behavior is tested at the appropriate level using specs. The specs are linked next to the source files.
 
 Parallel series of source files exist for dealing with *users*, *invitations*, *wishlists* and *present statuses*.
 
@@ -94,27 +110,4 @@ Parallel series of source files exist for dealing with *users*, *invitations*, *
 
 ## Data model
 
-- User
-  - groups: hasManyThrough participations
-- Participation
-  - user: belongsTo
-  - group: belongsTo
-  - wishlist: string (nullable)
-  - assignedUser: belongsTo user (nullable)
-  - presentStatus (nullable)
-  - eta: date (nullable)
-- Group
-  - users: hasManyThrough participations
-  - title: string
-  - has_started: bool (Once group has started, new users can't be added)
-  - deadline: date
-
-# Features
-- Create groups
-- Join groups
-- Add your own wishlist for a group
-- See how many users have set their wishlist.
-- If everyone has set their wishlist, someone can start the group. This will assign each user to another user randomly.
-- When a group has started -> Can see the user assigned to you and their wishlist
-- When a group has started -> Can update the status of getting a present. (Not started, ordered, arrived), and the ETA of arrival
-- When a group has started, you can see how many users have ordered the present, how many have arrived, and the ETA's
+TODO
