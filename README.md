@@ -8,25 +8,27 @@ Across the whole stack, the code is well-formatted, well-structured and well-tes
 The architecture of the project demonstrates 
 [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) and
 [loose coupling](https://en.wikipedia.org/wiki/Loose_coupling), 
-and follows Rails and React best-pactises. The code is clear and self-documenting, requiring few comments.
+and follows Rails and React best-practises. The code is clear and self-documenting, requiring few comments.
 
 ## Table of Contents
 
 - [Technologies used](#technologies-used)
 - [Screenshots](#screenshots)
 - [Domain model](#domain-model)
-- [Code examples: groups](#code-examples-groups)
 - [Data model](#data-model)
+- [Code examples: groups](#code-examples-groups)
 
 ## Technologies used
 
-`Ruby` `Rails` `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
+**Server-side**: `Ruby` `Rails` `Devise` `Devise JWT`
+
+**Client-side**: `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
 ## Screenshots
 
 ## Domain model
 
-This domain model specifies the Domain Specific Language of the app.
+This domain model specifies the Domain Specific Language used in the app, and how they relate to eachother.
 
 - Users
   - Users can sign up and log in to the app.
@@ -55,9 +57,40 @@ This domain model specifies the Domain Specific Language of the app.
   - After a group has started, it shows how many Sints have ordered their presents.
   - After at least one Sint has ordered their present, it shows how many presents have been delivered.
 
+## Data model
+
+The data model consists of *users*, *groups* and a pivot table between them called *participations*.
+
+A single participation references two users: the user participating and the user which is assigned the Sint of the participating user.
+
+```mermaid
+erDiagram
+    user {
+        int id pk
+        string email
+        string encrypted_password
+    }
+    participation {
+        int id pk
+        int user_id fk "The participating user."
+        int group_id fk "The group."
+        int sint_id fk "The Secret Sint of the participating user."
+        string wishlist "The user's own wishlist."
+        int present_status "The status of the user buying a present."
+    }
+    group {
+        int id pk
+        string title
+        bool has_started "True when Secret Sints have been assigned."
+    }
+    user ||--o{ participation : participations
+    user ||--o{ participation : sints
+    participation }o--|| group : participations
+```
+
 ## Code examples: *groups*
 
-These are the source files involved with displaying and mutating *groups* (DSL),
+These are the source files involved with *groups* (DSL),
 showing the processes and technologies used across the whole stack.
 
 At every significant step, the behavior is tested at the appropriate level using specs. The specs are linked next to the source files.
@@ -107,7 +140,3 @@ Parallel series of source files exist for dealing with *users*, *invitations*, *
   - App element with routing `React` `JSX` `React Router` - [App.tsx](app/src/App.tsx)
   - Front-end entry file `React` `Vite ENV` -  [main.tsx](app/src/main.tsx)
   - Environment variables - [.env](app/.env)
-
-## Data model
-
-TODO
