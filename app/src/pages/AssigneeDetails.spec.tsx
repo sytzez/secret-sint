@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 
 describe('/groups/:groupId/assignee', () => {
-  it("fetches and shows the assignee's details", async () => {
+  it("shows the assignee's details", async () => {
     const mockApi = {
       assignee: vi.fn(() => ({
         user: { email: 'bob@test.com' },

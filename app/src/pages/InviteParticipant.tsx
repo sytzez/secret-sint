@@ -1,5 +1,5 @@
 import InviteForm from '../components/InviteForm'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { useNavigate, useParams } from 'react-router-dom'
 import { InviteRequest } from '../schemata/invite-request'

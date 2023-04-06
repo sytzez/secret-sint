@@ -22,7 +22,7 @@ describe('/groups/:groupId', () => {
       assignSecretSints: vi.fn(),
     }
 
-    const { unmount, queryByText, container } = render(
+    const { unmount, queryByText } = render(
       <ApiContext.Provider value={mockApi as unknown as Api}>
         <MemoryRouter initialEntries={['/groups/123']}>
           <App />
