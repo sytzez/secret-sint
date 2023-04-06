@@ -84,7 +84,7 @@ erDiagram
         bool has_started "True when Secret Sints have been assigned."
     }
     user ||--o{ participation : participations
-    user ||--o{ participation : sints
+    user |o--o{ participation : sints
     participation }o--|| group : participations
 ```
 
@@ -126,7 +126,7 @@ Parallel series of source files exist for dealing with *users*, *invitations*, *
       [GroupProgress.spec.tsx](app/src/components/GroupProgress.spec.tsx) - *Renders metrics about the group's progress.*
     - Elemental components - [Button.tsx](app/src/components/Button.tsx),
       [Input.tsx](app/src/components/Input.tsx),
-      [ErrorText.tsx](app/src/components/ErrorText.tsx)
+      [ErrorText.tsx](app/src/components/ErrorText.tsx),
       [ProgressBar.tsx](app/src/components/ProgressBar.tsx),
       [Button.spec.tsx](app/src/components/Button.spec.tsx),
       [Input.spec.tsx](app/src/components/Input.spec.tsx),
