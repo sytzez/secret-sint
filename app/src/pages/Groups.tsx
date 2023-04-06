@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { ApiContext } from '../contexts/api-context'
-import { Group } from '../schemata/group'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
 
