@@ -63,8 +63,8 @@ class ParticipationsController < ApplicationController
   end
 
   def set_invited_user
-    @invited_user = User.find_by(email: invitation_params[:email])
-  rescue ActiveRecord::NotFoundException
+    @invited_user = User.find_by!(email: invitation_params[:email])
+  rescue ActiveRecord::RecordNotFound
     raise InvitationError, "This user doesn't have an account in the app"
   end
 
