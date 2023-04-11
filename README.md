@@ -58,7 +58,7 @@ Open the app in your browser at http://127.0.0.1:5173/.
 
 ## Technologies used
 
-**Server-side**: `Ruby` `Rails` `Devise` `Devise JWT`
+**Server-side**: `Ruby` `Rails` `Devise` `Devise JWT` `Rspec` `FactoryBot`
 
 **Client-side**: `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
@@ -66,7 +66,6 @@ Open the app in your browser at http://127.0.0.1:5173/.
 - Vitest coverage: 97.17% of statements
 - ESLint: 0 problems ([.eslintrc.cjs](app/.eslintrc.cjs))
 - Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml))
-TODO: vitest coverage. rspec coverage. rubocop. ESList. etc.
 
 ## Screenshots
 
@@ -143,8 +142,7 @@ Parallel series of source files exist for *users*, *invitations*, *wishlists* an
 
 - Server-side `Ruby` `Rails`
   - Database migration `ActiveRecord` - [20230331183825_create_groups.rb](api/db/migrate/20230331183825_create_groups.rb)
-  - Object relational model `ActiveRecord` - [group.rb](api/app/models/group.rb)
-  - TODO: specs, factories, seeds...
+  - Object relational model `ActiveRecord` - [group.rb](api/app/models/group.rb), [group_spec.rb](api/spec/models/group_spec.rb)
   - Assign Sints Service - [assign_secret_sints_service.rb](api/app/services/assign_secret_sints_service.rb)
   - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb)
   - Base controller `ActiveController` - [application_controller.rb](api/app/controllers/application_controller.rb) -
