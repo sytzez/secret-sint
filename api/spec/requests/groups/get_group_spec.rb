@@ -9,7 +9,7 @@ RSpec.describe 'GET /groups/:id', type: :request do
     let(:user) { create :user, :with_groups }
 
     context 'if the group belongs to the user' do
-      let(:group) { user.groups.first }
+      let(:group) { user.groups.first! }
 
       it 'returns information about the group' do
         get group_path(group), as: :json

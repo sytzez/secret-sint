@@ -81,7 +81,7 @@ RSpec.describe Group, type: :model do
     end
 
     context 'when the user is already participating' do
-      let(:user) { group.users.first }
+      let(:user) { group.users.first! }
 
       it 'should raise an error' do
         expect { subject }.to raise_error InvitationError

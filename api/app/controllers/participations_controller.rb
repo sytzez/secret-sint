@@ -6,8 +6,10 @@ class ParticipationsController < ApplicationController
   before_action :set_invited_user, only: %i[create]
 
   def show
-    if @participation.user == current_user || @participation.sint == current_user
-      render json: { success: true, data: @participation }, include: %i[user]
+    if @participation.user == current_user
+      render json: { success: true, data: @participation }
+    elsif @participation.sint == current_user
+      render json: { success: true, data: @participation.as_json(except: %i[present_status], include: %i[user]) }
     else
       render json: { success: false, message: "Can't view other participant's details" }, status: :forbidden
     end
@@ -56,7 +58,7 @@ class ParticipationsController < ApplicationController
                      elsif params[:id] == 'assigned'
                        @group.participations.find_by!(sint_id: current_user.id)
                      else
-                       @group.participations.find_by!(user_id: params[:id])
+                       @group.participations.find(params[:id])
                      end
   end
 

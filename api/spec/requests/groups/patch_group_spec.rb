@@ -12,7 +12,7 @@ RSpec.describe 'PATCH /groups/:id', type: :request do
     let(:user) { create :user, :with_groups }
 
     context 'if the group belongs to the user' do
-      let(:group) { user.groups.first }
+      let(:group) { user.groups.first! }
 
       context 'with valid params' do
         it 'updates the group' do

@@ -11,7 +11,7 @@ RSpec.describe 'POST /groups/:id/assign_secret_sints', type: :request do
     context 'if the group belongs to the user' do
       context 'if the group has not enough participants' do
         let(:group) { create :group, :with_participants, num_participants: 2 }
-        let(:user) { group.users.first }
+        let(:user) { group.users.first! }
 
         it 'returns an error' do
           post assign_secret_sints_group_path(group), as: :json
@@ -21,7 +21,7 @@ RSpec.describe 'POST /groups/:id/assign_secret_sints', type: :request do
 
       context 'if not every participant has a wishlist' do
         let(:group) { create :group, :with_participants, num_participants: 4 }
-        let(:user) { group.users.first }
+        let(:user) { group.users.first! }
 
         it 'returns an error' do
           post assign_secret_sints_group_path(group), as: :json
@@ -31,7 +31,7 @@ RSpec.describe 'POST /groups/:id/assign_secret_sints', type: :request do
 
       context 'if the group has enough participants and they all have wishlists' do
         let(:group) { create :group, :with_participants, :with_wishlists, num_participants: 4 }
-        let(:user) { group.users.first }
+        let(:user) { group.users.first! }
 
         it 'starts the group' do
           post assign_secret_sints_group_path(group), as: :json
