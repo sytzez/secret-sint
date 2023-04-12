@@ -29,6 +29,6 @@ class Group < ApplicationRecord
     raise InvitationError, 'This user is already part of the group' if participations.exists?(user_id: user.id)
     raise InvitationError, 'The group has already started' if has_started?
 
-    participations.create(user: user)
+    participations.create!(user: user)
   end
 end

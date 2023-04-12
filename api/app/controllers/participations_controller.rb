@@ -17,13 +17,7 @@ class ParticipationsController < ApplicationController
 
   def create
     @participation = @group.invite!(@invited_user)
-
-    if @participation.persisted?
-      render json: { success: true, data: @participation }, status: :created, location: [@group, @participation]
-    else
-      render json: { success: false, message: @participation.errors.full_messages.join('. ') },
-             status: :unprocessable_entity
-    end
+    render json: { success: true, data: @participation }, status: :created, location: [@group, @participation]
   end
 
   def update
