@@ -45,4 +45,27 @@ describe('/groups/:groupId', () => {
 
     unmount()
   })
+
+  it('shows an error message if the response has an error', async () => {
+    const mockApi = {
+      group: vi.fn(() => {
+        throw new Error('A server error')
+      }),
+    }
+
+    const { unmount, queryByText } = render(
+      <ApiContext.Provider value={mockApi as unknown as Api}>
+        <MemoryRouter initialEntries={['/groups/123']}>
+          <App />
+        </MemoryRouter>
+      </ApiContext.Provider>,
+    )
+    await new Promise((r) => setTimeout(r))
+
+    expect(mockApi.group).toBeCalledWith(123)
+
+    expect(queryByText('A server error')).not.toBeNull()
+
+    unmount()
+  })
 })
