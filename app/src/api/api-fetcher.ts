@@ -23,7 +23,6 @@ export const apiFetcher =
         return response.json()
       })
       .catch((e) => {
-        console.error(e)
         throw new Error('Something went wrong, try again later')
       })
       .then((response) => {
