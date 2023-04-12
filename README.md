@@ -20,6 +20,7 @@ The code quality has been measured using [these metrics](#code-quality-metrics).
 - [Domain model](#domain-model)
 - [Data model](#data-model)
 - [Code examples: groups](#code-examples-groups)
+- [Testing levels](#testing-levels)
 
 ## Getting started
 
@@ -184,3 +185,24 @@ Parallel series of source files exist for *users*, *invitations*, *wishlists* an
   - App element with routing `React` `JSX` `React Router` - [App.tsx](app/src/App.tsx)
   - Front-end entry file `React` `Vite ENV` -  [main.tsx](app/src/main.tsx)
   - Environment variables - [.env](app/.env)
+
+## Testing levels
+The appropriate logic is tested at the appropriate levels. 
+Testing too many things or testing the wrong things causes an application to become too hard to change.
+That's why it's important to only test the things that make the application behave as it should: actions should have the right outcomes, regardless of the implementation details.
+Tests should aim to account for all cases, including unexpected ones; they should cover all branches of possibilities.
+
+Here's an overview of the types of specifications used in this project and what they test.
+
+- Server-side
+  - Unit specs
+    - [Model specs](api/spec/models) - Tests that models provide the right validation, have the right associations, and that their methods return the expected results.
+  - Integration specs
+    - [Request specs](api/spec/requests) - Tests that the routing and controllers work and provide appropriate responses based on requests.
+- Client-side
+  - Unit specs
+    - [Component specs](app/src/components) - Tests that components show the right information given certain props, and that they react to DOM events.
+    - [Schema specs](app/src/schemata) - Tests that schemata provide the right validations.
+    - [API spec](app/src/api/create-api.spec.ts) - Tests that API actions perform the right HTTP requests.
+  - Integration specs
+    - [Page specs](app/src/pages) - Tests that the right pages are shown based on the routing, and that the appropriate API requests are made.
