@@ -4,6 +4,7 @@ import { ApiContext } from '../contexts/api-context'
 import { Api } from '../api/create-api'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
+import { awaitTick } from '../spec-helpers'
 
 describe('/groups/:groupId/assignee', () => {
   it("shows the assignee's details", async () => {
@@ -21,7 +22,7 @@ describe('/groups/:groupId/assignee', () => {
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
+    await awaitTick()
 
     expect(mockApi.assignee).toBeCalledWith(123)
 

@@ -4,6 +4,7 @@ import { ApiContext } from '../contexts/api-context'
 import { Api } from '../api/create-api'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
+import { awaitTick } from '../spec-helpers'
 
 describe('/groups', () => {
   it('shows groups', async () => {
@@ -21,7 +22,7 @@ describe('/groups', () => {
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
+    await awaitTick()
 
     expect(mockApi.groups).toBeCalled()
 
@@ -43,7 +44,7 @@ describe('/groups', () => {
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
+    await awaitTick()
 
     expect(mockApi.groups).toBeCalled()
 
@@ -70,7 +71,7 @@ describe('/groups', () => {
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
+    await awaitTick()
 
     expect(mockApi.groups).toBeCalled()
 

@@ -4,6 +4,7 @@ import { ApiContext } from '../contexts/api-context'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { Api } from '../api/create-api'
+import { awaitTick } from '../spec-helpers'
 
 describe('/groups/:groupId/wishlist', async () => {
   it('can show and update the wishlist', async () => {
@@ -22,7 +23,7 @@ describe('/groups/:groupId/wishlist', async () => {
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await new Promise((r) => setTimeout(r))
+    await awaitTick()
 
     expect(mockApi.participation).toBeCalledWith(123)
 

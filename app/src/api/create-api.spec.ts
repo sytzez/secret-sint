@@ -1,5 +1,6 @@
-import { describe, expect, it, Mock, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import createApi from './create-api'
+import { expectFetchCall, mockFetch } from '../spec-helpers'
 
 describe('createApi', () => {
   const api = createApi({
@@ -8,34 +9,6 @@ describe('createApi', () => {
       /* do nothing */
     },
   })
-
-  let fetchMock: Mock
-
-  const mockFetch = (response: object) => {
-    fetchMock = vi.fn(
-      () =>
-        new Promise((resolve) => {
-          const responseObject = {
-            status: 200,
-            json: () => response,
-          }
-          resolve(responseObject)
-        }),
-    )
-    global.fetch = fetchMock
-  }
-
-  const expectFetchCall = (method: string, url: string, body?: object) => {
-    expect(fetchMock).toBeCalledWith(url, {
-      method,
-      body: JSON.stringify(body),
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-  }
 
   it('sends signup requests', async () => {
     mockFetch({ success: true })
