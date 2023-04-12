@@ -22,7 +22,7 @@ export const apiFetcher =
         }
         return response.json()
       })
-      .catch((e) => {
+      .catch(() => {
         throw new Error('Something went wrong, try again later')
       })
       .then((response) => {

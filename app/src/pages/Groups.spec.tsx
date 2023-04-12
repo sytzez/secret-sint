@@ -37,20 +37,20 @@ describe('/groups', () => {
       groups: vi.fn(() => []),
     }
 
-    const { unmount, queryByText } = render(
+    const { unmount, findByText } = render(
       <ApiContext.Provider value={mockApi as unknown as Api}>
         <MemoryRouter initialEntries={['/groups']}>
           <App />
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await awaitTick()
 
     expect(mockApi.groups).toBeCalled()
 
     expect(
-      queryByText(
-        'Your groups will be shown here. Start a new group or ask someone to invite you to theirs.',
+      await findByText(
+        'Your groups will be shown here. '
+        + 'Start a new group or ask someone to invite you to theirs.',
       ),
     ).not.toBeNull()
 
@@ -59,23 +59,22 @@ describe('/groups', () => {
 
   it('shows an error message if the server returned an error', async () => {
     const mockApi = {
-      groups: vi.fn(() => {
+      groups: vi.fn(async () => {
         throw new Error('Something went wrong!')
       }),
     }
 
-    const { unmount, queryByText } = render(
+    const { unmount, findByText } = render(
       <ApiContext.Provider value={mockApi as unknown as Api}>
         <MemoryRouter initialEntries={['/groups']}>
           <App />
         </MemoryRouter>
       </ApiContext.Provider>,
     )
-    await awaitTick()
 
     expect(mockApi.groups).toBeCalled()
 
-    expect(queryByText('Something went wrong!')).not.toBeNull()
+    expect(await findByText('Something went wrong!')).not.toBeNull()
 
     unmount()
   })

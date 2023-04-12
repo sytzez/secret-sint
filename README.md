@@ -63,7 +63,7 @@ Open the app in your browser at http://127.0.0.1:5173/.
 **Client-side**: `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
 ## Code quality metrics
-- Vitest coverage: 97.17% of statements (c8)
+- Vitest coverage: 99.68% of statements (c8)
 - ESLint: 0 problems ([.eslintrc.cjs](app/.eslintrc.cjs))
 - Rspec coverage: 98.57% covered at 2.21 hits/line (simplecov)
 - Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml))
@@ -153,7 +153,7 @@ Parallel series of source files exist for *users*, *invitations*, *wishlists* an
     *Provides a simple interface to make API requests, provided to React components through a React Context.*
     - API fetcher `Fetch` - [api-fetcher.ts](app/src/api/api-fetcher.ts)
     - API object - [create-api.ts](app/src/api/create-api.ts), [create-api.spec.ts](app/src/api/create-api.spec.ts)
-    - API context provider `React Context` - [api-context.tsx](app/src/contexts/api-context.tsx)
+    - API context provider `React Context` - [api-context.tsx](app/src/contexts/api-context.tsx), [api-context.spec.tsx](app/src/contexts/api-context.spec.tsx)
   - Validation schemata `Zod` -
     *Provides validation and processing of data coming from the API as well as data submitted into forms.*
     - Response schema -  [group.ts](app/src/schemata/group.ts), [group.spec.ts](app/src/schemata/group.spec.ts)
