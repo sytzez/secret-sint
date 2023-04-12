@@ -35,7 +35,10 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
-    return unless @participation.user == current_user
+    if @participation.user != current_user
+      render json: { success: false, message: "Can't remove another participant from a group" }, status: :forbidden
+      return
+    end
 
     @participation.destroy
   end

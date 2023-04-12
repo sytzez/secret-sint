@@ -74,7 +74,7 @@ RSpec.describe 'PATCH /groups/:group_id/participations/:id', type: :request do
       end
     end
 
-    context "when it is another user's participation" do
+    context "when updating another user's participation" do
       it 'is forbidden' do
         patch group_participation_path(group, other_participation), params: valid_params, as: :json
         expect(response).to have_http_status(:forbidden)
