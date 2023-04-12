@@ -63,10 +63,10 @@ Open the app in your browser at http://127.0.0.1:5173/.
 **Client-side**: `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
 ## Code quality metrics
-- Vitest coverage: 99.68% of statements (c8)
-- ESLint: 0 problems ([.eslintrc.cjs](app/.eslintrc.cjs))
-- Rspec coverage: 98.57% covered at 2.21 hits/line (simplecov)
-- Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml))
+- Vitest coverage: 99.68% of statements (c8). [View coverage](https://sytzez.github.io/secret-sint/app_coverage).
+- ESLint: 0 problems. ([.eslintrc.cjs](app/.eslintrc.cjs)).
+- Rspec coverage: 98.57% covered at 2.21 hits/line (simplecov). [View coverage](https://sytzez.github.io/secret-sint/api_coverage).
+- Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml)).
 
 ## Screenshots
 
