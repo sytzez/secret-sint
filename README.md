@@ -63,8 +63,9 @@ Open the app in your browser at http://127.0.0.1:5173/.
 **Client-side**: `TypeScript` `React` `JSX` `TailwindCSS` `React Router` `Zod` `Vite` `Vitest` `React testing library`
 
 ## Code quality metrics
-- Vitest coverage: 97.17% of statements
+- Vitest coverage: 97.17% of statements (c8)
 - ESLint: 0 problems ([.eslintrc.cjs](app/.eslintrc.cjs))
+- Rspec coverage: 98.57% covered at 2.21 hits/line (simplecov)
 - Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml))
 
 ## Screenshots
@@ -144,7 +145,7 @@ Parallel series of source files exist for *users*, *invitations*, *wishlists* an
   - Database migration `ActiveRecord` - [20230331183825_create_groups.rb](api/db/migrate/20230331183825_create_groups.rb)
   - Object relational model `ActiveRecord` - [group.rb](api/app/models/group.rb), [group_spec.rb](api/spec/models/group_spec.rb)
   - Assign Sints Service - [assign_secret_sints_service.rb](api/app/services/assign_secret_sints_service.rb)
-  - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb)
+  - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb), [multiple request specs](api/spec/requests/groups).
   - Base controller `ActiveController` - [application_controller.rb](api/app/controllers/application_controller.rb) -
     *Catches some exceptions to return meaningful responses.*
 - Client-side `TypeScript` `Vite`
