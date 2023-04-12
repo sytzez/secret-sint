@@ -30,4 +30,52 @@ describe('/groups', () => {
 
     unmount()
   })
+
+  it('shows a message if there are no groups', async () => {
+    const mockApi = {
+      groups: vi.fn(() => []),
+    }
+
+    const { unmount, queryByText } = render(
+      <ApiContext.Provider value={mockApi as unknown as Api}>
+        <MemoryRouter initialEntries={['/groups']}>
+          <App />
+        </MemoryRouter>
+      </ApiContext.Provider>,
+    )
+    await new Promise((r) => setTimeout(r))
+
+    expect(mockApi.groups).toBeCalled()
+
+    expect(
+      queryByText(
+        'Your groups will be shown here. Start a new group or ask someone to invite you to theirs.',
+      ),
+    ).not.toBeNull()
+
+    unmount()
+  })
+
+  it('shows an error message if the server returned an error', async () => {
+    const mockApi = {
+      groups: vi.fn(() => {
+        throw new Error('Something went wrong!')
+      }),
+    }
+
+    const { unmount, queryByText } = render(
+      <ApiContext.Provider value={mockApi as unknown as Api}>
+        <MemoryRouter initialEntries={['/groups']}>
+          <App />
+        </MemoryRouter>
+      </ApiContext.Provider>,
+    )
+    await new Promise((r) => setTimeout(r))
+
+    expect(mockApi.groups).toBeCalled()
+
+    expect(queryByText('Something went wrong!')).not.toBeNull()
+
+    unmount()
+  })
 })
