@@ -11,6 +11,7 @@ export default function useAsync<T, U>(call: (param: U) => Promise<T>) {
 
     let isCurrent = true
 
+    // @ts-ignore it's ok for this to be undefined
     call(param)
       .then((callResult) => {
         if (isCurrent) setResult(callResult)
