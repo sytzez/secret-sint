@@ -145,8 +145,9 @@ Parallel series of source files exist for *users*, *invitations*, *wishlists* an
 - Server-side `Ruby` `Rails`
   - Database migration `ActiveRecord` - [20230331183825_create_groups.rb](api/db/migrate/20230331183825_create_groups.rb)
   - Object relational model `ActiveRecord` - [group.rb](api/app/models/group.rb), [group_spec.rb](api/spec/models/group_spec.rb)
-  - Assign Sints Service - [assign_secret_sints_service.rb](api/app/services/assign_secret_sints_service.rb)
-  - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb), [multiple request specs](api/spec/requests/groups).
+  - Assign Sints Service - [assign_secret_sints_service.rb](api/app/services/assign_secret_sints_service.rb),
+    [assign_secret_sints_service_spec.rb](api/spec/services/assign_secret_sints_service_spec.rb)
+  - Controller `ActiveController` - [groups_controller.rb](api/app/controllers/groups_controller.rb), [6 request specs](api/spec/requests/groups).
   - Base controller `ActiveController` - [application_controller.rb](api/app/controllers/application_controller.rb) -
     *Catches some exceptions to return meaningful responses.*
 - Client-side `TypeScript` `Vite`
@@ -197,6 +198,7 @@ Here's an overview of the types of specifications used in this project and what 
 - Server-side
   - Unit specs
     - [Model specs](api/spec/models) - Tests that models provide the right validation, have the right associations, and that their methods return the expected results.
+    - [Service specs](api/spec/services) - Tests that calling services has the right effects.
   - Integration specs
     - [Request specs](api/spec/requests) - Tests that the routing and controllers work and provide appropriate responses based on requests.
 - Client-side

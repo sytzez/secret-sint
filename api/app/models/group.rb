@@ -7,7 +7,7 @@ class Group < ApplicationRecord
   validates :title, presence: true
 
   def wishlist_count
-    participations.where.not(wishlist: nil)
+    participations.where.not(wishlist: [nil, ''])
                   .count
   end
 

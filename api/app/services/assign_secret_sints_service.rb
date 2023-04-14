@@ -7,7 +7,7 @@ class AssignSecretSintsService
   end
 
   def validate!
-    raise! "Secret Sint's have already been assigned" if @group.has_started?
+    raise! 'Secret Sints have already been assigned' if @group.has_started?
     raise! 'The group must have at least 3 participants' if @group.participations.count < 3
     raise! 'Not everyone has filled in their wishlist' if @group.wishlist_count < @group.participations.count
   end
