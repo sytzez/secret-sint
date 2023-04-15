@@ -49,8 +49,8 @@ describe('/groups', () => {
 
     expect(
       await findByText(
-        'Your groups will be shown here. '
-        + 'Start a new group or ask someone to invite you to theirs.',
+        'Your groups will be shown here. ' +
+          'Start a new group or ask someone to invite you to theirs.',
       ),
     ).not.toBeNull()
 

@@ -15,9 +15,9 @@ module.exports = {
       logo: ['Festive', 'cursive'],
     },
     screens: {
-      'xs': '400px',
+      xs: '400px',
       ...defaultTheme.screens,
-    }
+    },
   },
   plugins: [],
 }

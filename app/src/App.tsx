@@ -8,7 +8,7 @@ import InviteParticipant from './pages/InviteParticipant'
 import EditWishlist from './pages/EditWishlist'
 import AssigneeDetails from './pages/AssigneeDetails'
 import EditPresentStatus from './pages/EditPresentStatus'
-import Start from "./pages/Start";
+import Start from './pages/Start'
 
 function App() {
   return (
