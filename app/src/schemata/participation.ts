@@ -6,7 +6,7 @@ export const participationSchema = z.object({
   wishlist: z.string().nullish(),
   present_status: presentStatusSchema,
   eta: z.date().nullish(),
-  user: userSchema,
+  user: userSchema.nullish(),
 })
 
 export type Participation = z.infer<typeof participationSchema>

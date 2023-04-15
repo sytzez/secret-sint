@@ -25,7 +25,7 @@ export default function AssigneeDetails() {
       <h1 className="text-white text-2xl font-bold mb-4">Your assignee</h1>
       <p className="text-white">You are assigned to:</p>
       <p className="text-center text-yellow-200 mb-2">
-        {participant.user.email}
+        {participant.user!.email}
       </p>
       <p className="text-white">This is their wishlist:</p>
       <p className="text-yellow-200 mb-2 px-6 whitespace-pre">
