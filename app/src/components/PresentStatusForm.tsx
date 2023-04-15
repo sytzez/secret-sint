@@ -37,7 +37,7 @@ export default function PresentStatusForm({
         required
         id="present_status"
         name="present_status"
-        defaultValue={value.present_status}
+        defaultValue={value.present_status!}
         className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2 cursor-pointer appearance-none"
       >
         <option value="not_started">Not started</option>
