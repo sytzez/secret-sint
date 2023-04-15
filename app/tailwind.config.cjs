@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 module.exports = {
   content: [
     './index.html',
@@ -9,7 +12,12 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ['Varela Round', 'sans-serif'],
+      logo: ['Festive', 'cursive'],
     },
+    screens: {
+      'xs': '400px',
+      ...defaultTheme.screens,
+    }
   },
   plugins: [],
 }

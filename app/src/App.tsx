@@ -8,12 +8,13 @@ import InviteParticipant from './pages/InviteParticipant'
 import EditWishlist from './pages/EditWishlist'
 import AssigneeDetails from './pages/AssigneeDetails'
 import EditPresentStatus from './pages/EditPresentStatus'
+import Start from "./pages/Start";
 
 function App() {
   return (
     <div className="max-w-md m-auto py-8 px-2">
       <Routes>
-        <Route path="/" element={<Navigate to="/groups" />} />
+        <Route path="/" element={<Start />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/groups" element={<Groups />} />
