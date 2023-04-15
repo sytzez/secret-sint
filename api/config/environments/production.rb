@@ -32,4 +32,6 @@ Rails.application.configure do
   end
 
   config.active_record.dump_schema_after_migration = false
+
+  config.action_dispatch.cookies_same_site_protection = :none
 end
