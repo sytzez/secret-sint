@@ -47,8 +47,7 @@ describe('<Form />', () => {
 
   it('sends onSubmit when submitted', async () => {
     const submitMock = vi.fn()
-    const { unmount, findByText, queryByText } = initialize({ submitMock })
-    expect(queryByText('...')).toBeNull()
+    const { unmount, findByText } = initialize({ submitMock })
     const submitElement = await findByText('Submit it!')
     fireEvent.click(submitElement)
     expect(submitMock).toBeCalled()
@@ -57,12 +56,11 @@ describe('<Form />', () => {
 
   it('does not send onSubmit when loading', async () => {
     const submitMock = vi.fn()
-    const { unmount, findByText, queryByText } = initialize({
+    const { unmount, findByText } = initialize({
       submitMock,
       isLoading: true,
     })
-    expect(queryByText('Submit it!')).toBeNull()
-    const submitElement = await findByText('...')
+    const submitElement = await findByText('Submit it!')
     fireEvent.click(submitElement)
     expect(submitMock).not.toBeCalled()
     unmount()

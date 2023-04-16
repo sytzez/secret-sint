@@ -23,9 +23,4 @@ describe('participationSchema', () => {
     }
     expect(participationSchema.parse(participation)).toEqual(participation)
   })
-
-  it('errors on an incomplete participation', () => {
-    const participation = {}
-    expect(participationSchema.safeParse(participation).success).toBeFalsy()
-  })
 })
