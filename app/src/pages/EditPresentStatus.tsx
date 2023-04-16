@@ -7,6 +7,7 @@ import { ParticipationRequest } from '../schemata/participation-request'
 import ErrorText from '../components/ErrorText'
 import PresentStatusForm from '../components/PresentStatusForm'
 import Layout from '../components/Layout'
+import Loading from '../components/Loading'
 
 export default function EditPresentStatus() {
   const api = useContext(ApiContext)
@@ -16,6 +17,7 @@ export default function EditPresentStatus() {
   const {
     go: loadParticipation,
     result: participation,
+    isLoading,
     error: loadError,
   } = useAsync(async () => await api.participation(groupId))
 
@@ -30,27 +32,30 @@ export default function EditPresentStatus() {
 
   useEffect(loadParticipation, [groupId])
 
-  if (loadError) return <p className="text-white">{loadError}</p>
-  if (!participation) return <p className="text-white">Loading...</p>
-
   return (
     <Layout
       title="Present status"
       onHome={() => navigate('/groups')}
       onBack={() => navigate(`/groups/${groupId}`)}
     >
-      <PresentStatusForm
-        onSubmit={submit}
-        isLoading={isSubmitting}
-        value={participation}
-      />
-      <ErrorText error={submitError} />
-      <button
-        className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
-        onClick={() => navigate(`/groups/${groupId}`)}
-      >
-        Cancel
-      </button>
+      <ErrorText error={loadError} />
+      {isLoading && <Loading />}
+      {participation && (
+        <>
+          <PresentStatusForm
+            onSubmit={submit}
+            isLoading={isSubmitting}
+            value={participation}
+          />
+          <ErrorText error={submitError} />
+          <button
+            className="rounded-full border border-red-300 text-white p-4 bg-red-600 hover:bg-red-700 shadow-lg mt-4"
+            onClick={() => navigate(`/groups/${groupId}`)}
+          >
+            Cancel
+          </button>
+        </>
+      )}
     </Layout>
   )
 }

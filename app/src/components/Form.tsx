@@ -1,6 +1,7 @@
 import ErrorText from './ErrorText'
 import { ReactNode } from 'react'
 import Button from './Button'
+import Loading from './Loading'
 
 export interface FormProps {
   children: ReactNode
@@ -30,9 +31,10 @@ export default function Form({
       <Button
         type="submit"
         style="primary"
-        label={isLoading ? '...' : submitLabel}
+        label={submitLabel}
         disabled={isLoading}
       />
+      {isLoading && <Loading />}
       <ErrorText error={error} />
     </form>
   )

@@ -7,6 +7,7 @@ import GroupProgress from '../components/GroupProgress'
 import useAsync from '../hooks/use-async'
 import ErrorText from '../components/ErrorText'
 import Layout from '../components/Layout'
+import Loading from '../components/Loading'
 
 export default function GroupDetail() {
   const api = useContext(ApiContext)
@@ -30,8 +31,27 @@ export default function GroupDetail() {
 
   useEffect(loadGroup, [groupId])
 
-  if (loadError) return <p className="text-white">{loadError}</p>
-  if (!group) return <p className="text-white">Loading...</p>
+  if (loadError) {
+    return (
+      <Layout
+        onHome={() => navigate('/groups')}
+        onBack={() => navigate('/groups')}
+      >
+        <ErrorText error={loadError} />
+      </Layout>
+    )
+  }
+
+  if (!group) {
+    return (
+      <Layout
+        onHome={() => navigate('/groups')}
+        onBack={() => navigate('/groups')}
+      >
+        <Loading />
+      </Layout>
+    )
+  }
 
   const canAssignSecretSints =
     group.users &&
