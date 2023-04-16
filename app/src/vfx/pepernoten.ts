@@ -1,9 +1,14 @@
 const INTERVAL_BETWEEN_PEPERNOTEN = 500
+
 const ANIMATION_DURATION = 15000
+
 const SIMULTANEOUS_PEPERNOTEN =
   Math.ceil(ANIMATION_DURATION / INTERVAL_BETWEEN_PEPERNOTEN) + 1
+
 const GOLDEN_RATIO = (1 + Math.sqrt(5)) * 0.5
+
 const RANDOMNESS = 0.05
+
 const PEPERNOOT_PROTOTYPE = (() => {
   const element = document.createElement('DIV')
   element.className = 'pepernoot'
