@@ -8,17 +8,19 @@
   position: fixed;
   z-index: -1;
   top: 0;
-  width: 10px;
-  height: 10px;
-  background: white;
-  animation: pepernootFall 10s linear forwards;
+  width: 40px;
+  height: 40px;
+  background-image: url("assets/pepernoot.png");
+  background-size: contain;
+  animation: pepernootFall 15s linear forwards;
+  opacity: .75;
 }
 
 @keyframes pepernootFall {
   from {
-    transform: translateY(-10px);
+    transform: translateY(-20px) rotate3d(1, 2, 8, 0deg);
   }
   to {
-    transform: translateY(100vh);
+    transform: translateY(100vh) rotate3d(0, 2, 3, 2500deg);
   }
 }
