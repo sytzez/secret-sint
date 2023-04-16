@@ -9,7 +9,7 @@ export default function Start() {
   usePepernoten()
 
   return (
-    <>
+    <div className="max-w-md m-auto pb-8 px-2">
       <img
         src={sinterklaasImage}
         alt="Secret Sint Logo"
@@ -32,6 +32,6 @@ export default function Start() {
         style="secondary"
         onClick={() => navigate('/signup')}
       />
-    </>
+    </div>
   )
 }

@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 import { ApiContext } from '../contexts/api-context'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
+import Layout from '../components/Layout'
 
 export default function Groups() {
   const api = useContext(ApiContext)
@@ -19,8 +20,7 @@ export default function Groups() {
   if (!groups) return <p className="text-white">Loading...</p>
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-4">Select a group</h1>
+    <Layout title="Select a group" onHome={() => navigate('/groups')}>
       {groups.length === 0 && (
         <p className="text-white mb-2 italic">
           Your groups will be shown here. Start a new group or ask someone to
@@ -45,6 +45,6 @@ export default function Groups() {
       >
         New group
       </button>
-    </div>
+    </Layout>
   )
 }

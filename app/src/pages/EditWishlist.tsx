@@ -6,6 +6,7 @@ import { ParticipationRequest } from '../schemata/participation-request'
 import ErrorText from '../components/ErrorText'
 import useAsync from '../hooks/use-async'
 import useGroupId from '../hooks/use-group-id'
+import Layout from '../components/Layout'
 
 export default function EditWishlist() {
   const api = useContext(ApiContext)
@@ -33,8 +34,11 @@ export default function EditWishlist() {
   if (!participation) return <p className="text-white">Loading...</p>
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-2">Your wishlist</h1>
+    <Layout
+      title="Your wishlist"
+      onHome={() => navigate('/groups')}
+      onBack={() => navigate(`/groups/${groupId}`)}
+    >
       <p className="text-white mb-2">
         Your wishlist will only be visible to your Secret Sint.
       </p>
@@ -50,6 +54,6 @@ export default function EditWishlist() {
       >
         Cancel
       </button>
-    </div>
+    </Layout>
   )
 }

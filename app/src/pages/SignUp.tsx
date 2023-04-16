@@ -5,6 +5,7 @@ import { SignUpRequest } from '../schemata/sign-up-request'
 import { useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
 import ErrorText from '../components/ErrorText'
+import Layout from '../components/Layout'
 
 export default function SignUp() {
   const api = useContext(ApiContext)
@@ -20,8 +21,11 @@ export default function SignUp() {
   })
 
   return (
-    <>
-      <h1 className="text-white text-2xl font-bold mb-4">Create an account</h1>
+    <Layout
+      title="Create an account"
+      onBack={() => navigate('/')}
+      onHome={() => navigate('/')}
+    >
       <SignUpForm onSubmit={submit} isLoading={isLoading} />
       <ErrorText error={error} />
       <button
@@ -30,6 +34,6 @@ export default function SignUp() {
       >
         Already have an account? Log in instead.
       </button>
-    </>
+    </Layout>
   )
 }

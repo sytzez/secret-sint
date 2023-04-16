@@ -6,6 +6,7 @@ import useAsync from '../hooks/use-async'
 import { ParticipationRequest } from '../schemata/participation-request'
 import ErrorText from '../components/ErrorText'
 import PresentStatusForm from '../components/PresentStatusForm'
+import Layout from '../components/Layout'
 
 export default function EditPresentStatus() {
   const api = useContext(ApiContext)
@@ -33,8 +34,11 @@ export default function EditPresentStatus() {
   if (!participation) return <p className="text-white">Loading...</p>
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-2">Present status</h1>
+    <Layout
+      title="Present status"
+      onHome={() => navigate('/groups')}
+      onBack={() => navigate(`/groups/${groupId}`)}
+    >
       <PresentStatusForm
         onSubmit={submit}
         isLoading={isSubmitting}
@@ -47,6 +51,6 @@ export default function EditPresentStatus() {
       >
         Cancel
       </button>
-    </div>
+    </Layout>
   )
 }

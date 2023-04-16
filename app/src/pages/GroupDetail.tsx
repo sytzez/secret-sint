@@ -6,6 +6,7 @@ import Button from '../components/Button'
 import GroupProgress from '../components/GroupProgress'
 import useAsync from '../hooks/use-async'
 import ErrorText from '../components/ErrorText'
+import Layout from '../components/Layout'
 
 export default function GroupDetail() {
   const api = useContext(ApiContext)
@@ -38,8 +39,11 @@ export default function GroupDetail() {
     group.wishlist_count === group.users.length
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-4">{group.title}</h1>
+    <Layout
+      title={group.title}
+      onHome={() => navigate('/groups')}
+      onBack={() => navigate('/groups')}
+    >
       {!group.has_started && (
         <Button
           label="Edit your wishlist"
@@ -91,6 +95,6 @@ export default function GroupDetail() {
           style="secondary"
         />
       </div>
-    </div>
+    </Layout>
   )
 }

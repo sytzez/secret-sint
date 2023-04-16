@@ -3,6 +3,7 @@ import { ApiContext } from '../contexts/api-context'
 import { useNavigate, useParams } from 'react-router-dom'
 import useAsync from '../hooks/use-async'
 import Button from '../components/Button'
+import Layout from '../components/Layout'
 
 export default function AssigneeDetails() {
   const api = useContext(ApiContext)
@@ -21,8 +22,11 @@ export default function AssigneeDetails() {
   if (!participant) return <p className="text-white">Loading...</p>
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-4">Your assignee</h1>
+    <Layout
+      title="Your assignee"
+      onHome={() => navigate('/groups')}
+      onBack={() => navigate(`/groups/${groupId}`)}
+    >
       <p className="text-white">You are assigned to:</p>
       <p className="text-center text-yellow-200 mb-2">
         {participant.user!.email}
@@ -38,6 +42,6 @@ export default function AssigneeDetails() {
           style="secondary"
         />
       </div>
-    </div>
+    </Layout>
   )
 }

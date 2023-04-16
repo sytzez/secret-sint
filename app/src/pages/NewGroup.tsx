@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { GroupRequest } from '../schemata/group-request'
 import ErrorText from '../components/ErrorText'
 import useAsync from '../hooks/use-async'
+import Layout from '../components/Layout'
 
 export default function NewGroup() {
   const api = useContext(ApiContext)
@@ -20,8 +21,11 @@ export default function NewGroup() {
   })
 
   return (
-    <div className="flex gap-2 flex-col">
-      <h1 className="text-white text-2xl font-bold mb-2">New group</h1>
+    <Layout
+      title="New group"
+      onHome={() => navigate('/groups')}
+      onBack={() => navigate('/groups')}
+    >
       <GroupForm
         submitLabel="Create group"
         onSubmit={submit}
@@ -34,6 +38,6 @@ export default function NewGroup() {
       >
         Back to all groups
       </button>
-    </div>
+    </Layout>
   )
 }

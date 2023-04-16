@@ -10,10 +10,10 @@
   top: 0;
   width: 40px;
   height: 40px;
-  background-image: url("assets/pepernoot.png");
+  background-image: url('assets/pepernoot.png');
   background-size: contain;
   animation: pepernootFall 15s linear forwards;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 @keyframes pepernootFall {
