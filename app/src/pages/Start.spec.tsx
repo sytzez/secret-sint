@@ -8,7 +8,7 @@ describe('/', () => {
     const { unmount, queryByText } = render(
       <MemoryRouter initialEntries={['/']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     )
 
     expect(queryByText('Secret Sint')).not.toBeNull()

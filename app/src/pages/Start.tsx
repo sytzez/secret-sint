@@ -1,13 +1,21 @@
 import sinterklaasImage from '../assets/sinterklaas.png'
 import Button from '../components/Button'
 import { useNavigate } from 'react-router-dom'
+import usePepernoten from '../hooks/use-pepernoten'
 
 export default function Start() {
   const navigate = useNavigate()
 
+  usePepernoten()
+
   return (
     <>
-      <img src={sinterklaasImage} alt="Secret Sint Logo" width={432} height={432} />
+      <img
+        src={sinterklaasImage}
+        alt="Secret Sint Logo"
+        width={432}
+        height={432}
+      />
       <h1 className="text-white xs:text-8xl text-6xl text-center font-logo drop-shadow-lg shadow-black mb-1">
         Secret Sint
       </h1>

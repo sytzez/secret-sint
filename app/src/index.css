@@ -3,3 +3,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pepernoot {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: white;
+  animation: pepernootFall 10s linear forwards;
+}
+
+@keyframes pepernootFall {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
