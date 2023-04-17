@@ -83,9 +83,7 @@ describe('<GroupProgress />', () => {
       />,
     )
 
-    const labelElement = queryByText(
-      '2 out of 3 presents have arrived.',
-    )
+    const labelElement = queryByText('2 out of 3 presents have arrived.')
     expect(labelElement).not.toBeNull()
 
     unmount()

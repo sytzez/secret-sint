@@ -7,6 +7,7 @@ export interface InputProps {
   type?: string
   autocomplete?: string
   disabled: boolean
+  autoFocus?: boolean
 }
 
 export default function Input({
@@ -18,6 +19,7 @@ export default function Input({
   type,
   autocomplete,
   disabled,
+  autoFocus,
 }: InputProps) {
   return (
     <>
@@ -33,6 +35,7 @@ export default function Input({
         name={name}
         placeholder={placeholder}
         disabled={disabled}
+        autoFocus={autoFocus}
         className="bg-white rounded-full p-4 disabled:bg-gray-300 shadow-lg mb-2"
       />
     </>

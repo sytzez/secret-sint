@@ -29,6 +29,7 @@ export default function SignUpForm({ onSubmit, isLoading }: SignUpFormProps) {
         placeholder="Your email address"
         autocomplete="email"
         disabled={isLoading}
+        autoFocus
       />
       <Input
         minLength={8}

@@ -35,6 +35,7 @@ export default function PresentStatusForm({
       </label>
       <select
         required
+        autoFocus
         id="present_status"
         name="present_status"
         defaultValue={value.present_status!}

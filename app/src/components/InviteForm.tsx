@@ -25,6 +25,7 @@ export default function InviteForm({ onSubmit, isLoading }: InviteFormProps) {
         placeholder="Their email address"
         autocomplete="none"
         disabled={isLoading}
+        autoFocus
       />
     </Form>
   )

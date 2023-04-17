@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import { useNavigate } from "react-router-dom";
-import usePepernoten from "../hooks/use-pepernoten";
-import Button from "../components/Button";
+import Layout from '../components/Layout'
+import { useNavigate } from 'react-router-dom'
+import usePepernoten from '../hooks/use-pepernoten'
+import Button from '../components/Button'
 import createAGroupImage from '../assets/screenshots/create-a-group.png'
 import addingParticipantsImage from '../assets/screenshots/adding-participants.png'
 import editingAWishlistImage from '../assets/screenshots/editing-a-wishlist.png'
@@ -30,7 +30,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(.5, -1, 0, 15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg text-right">Add your friends</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg text-right">
+        Add your friends
+      </h2>
       <img
         src={addingParticipantsImage}
         width="80%"
@@ -39,7 +41,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(-.5, -1, 0, -15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg">Everyone fills in their wishlist, privately</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg">
+        Everyone fills in their wishlist, privately
+      </h2>
       <img
         src={editingAWishlistImage}
         width="80%"
@@ -48,7 +52,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(.5, -1, 0, 15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg text-right">The app assigns everyone a Secret Sint!</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg text-right">
+        The app assigns everyone a Secret Sint!
+      </h2>
       <img
         src={assignSecretSintsImage}
         width="80%"
@@ -57,7 +63,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(-.5, -1, 0, -15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg">Order a present for your secretly assigned friend</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg">
+        Order a present for your secretly assigned friend
+      </h2>
       <img
         src={yourAssigneeImage}
         width="80%"
@@ -66,7 +74,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(.5, -1, 0, 15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg text-right">Let the app know about your order</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg text-right">
+        Let the app know about your order
+      </h2>
       <img
         src={presentStatusImage}
         width="80%"
@@ -75,7 +85,9 @@ export default function HowItWorks() {
         style={{ transform: 'perspective(800px) rotate3d(-.5, -1, 0, -15deg)' }}
       />
 
-      <h2 className="text-white text-3xl drop-shadow-lg">Sit back and follow the group's progress</h2>
+      <h2 className="text-white text-3xl drop-shadow-lg">
+        Sit back and follow the group's progress
+      </h2>
       <img
         src={groupProgressImage}
         width="80%"

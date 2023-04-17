@@ -29,6 +29,7 @@ export default function LogInForm({ onSubmit, isLoading }: LogInFormProps) {
         placeholder="Your email address"
         autocomplete="email"
         disabled={isLoading}
+        autoFocus
       />
       <Input
         name="password"

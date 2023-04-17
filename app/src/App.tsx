@@ -9,7 +9,7 @@ import EditWishlist from './pages/EditWishlist'
 import AssigneeDetails from './pages/AssigneeDetails'
 import EditPresentStatus from './pages/EditPresentStatus'
 import Start from './pages/Start'
-import HowItWorks from "./pages/HowItWorks";
+import HowItWorks from './pages/HowItWorks'
 
 function App() {
   return (

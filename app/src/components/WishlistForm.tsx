@@ -38,6 +38,7 @@ export default function WishlistForm({
         rows={5}
         defaultValue={value}
         disabled={isLoading}
+        autoFocus
       />
     </Form>
   )

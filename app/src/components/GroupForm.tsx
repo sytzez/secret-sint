@@ -28,6 +28,7 @@ export default function GroupForm({
         label="Name"
         placeholder="The name of the group"
         disabled={isLoading}
+        autoFocus
       />
     </Form>
   )
