@@ -18,7 +18,7 @@ class AssignSecretSintsService
 
       @group.participations.each do |participation|
         sint_id = user_ids.reject { |id| id == participation.user_id }.sample
-        participation.update!(sint_id: sint_id)
+        participation.update!(sint_id:)
         user_ids.delete(sint_id)
       end
 

@@ -12,7 +12,7 @@ FactoryBot.define do
     trait :with_groups do
       after(:create) do |user, evaluator|
         create_list(:group, evaluator.num_groups).each do |group|
-          create(:participation, group: group, user: user)
+          create(:participation, group:, user:)
         end
       end
     end

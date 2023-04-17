@@ -16,7 +16,7 @@ FactoryBot.define do
           :participation,
           evaluator.num_participants,
           *evaluator.participation_traits,
-          group: group
+          group:
         )
       end
     end
