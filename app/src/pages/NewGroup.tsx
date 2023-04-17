@@ -25,6 +25,7 @@ export default function NewGroup() {
       title="New group"
       onHome={() => navigate('/groups')}
       onBack={() => navigate('/groups')}
+      onLogOut={api.logOut}
     >
       <GroupForm
         submitLabel="Create group"

@@ -24,6 +24,12 @@ describe('createApi', () => {
     expectFetchCall('POST', 'example.com/login', { user: request })
   })
 
+  it('sends logout requests', async () => {
+    mockFetch({ success: true })
+    await api.logOut()
+    expectFetchCall('DELETE', 'example.com/logout')
+  })
+
   it('sends groups requests', async () => {
     const group = { id: 1, title: 'A group ', has_started: false }
     mockFetch({ success: true, data: [group] })

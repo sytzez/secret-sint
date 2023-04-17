@@ -6,9 +6,15 @@ describe('<Layout />', () => {
   it('wraps the children in a layout', () => {
     const onHomeMock = vi.fn()
     const onBackMock = vi.fn()
+    const onLogOutMock = vi.fn()
 
     const { unmount, queryByText, container } = render(
-      <Layout title="The page title" onHome={onHomeMock} onBack={onBackMock}>
+      <Layout
+        title="The page title"
+        onHome={onHomeMock}
+        onBack={onBackMock}
+        onLogOut={onLogOutMock}
+      >
         <p>The page content</p>
       </Layout>,
     )
@@ -22,6 +28,9 @@ describe('<Layout />', () => {
 
     fireEvent.click(container.querySelector('[title=Back]')!)
     expect(onBackMock).toBeCalled()
+
+    fireEvent.click(queryByText('Log out')!)
+    expect(onLogOutMock).toBeCalled()
 
     unmount()
   })

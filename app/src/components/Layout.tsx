@@ -4,6 +4,7 @@ export interface LayoutProps {
   title?: string
   onBack?: () => void
   onHome: () => void
+  onLogOut?: () => void
   children: ReactNode
 }
 
@@ -11,12 +12,13 @@ export default function Layout({
   title,
   onBack,
   onHome,
+  onLogOut,
   children,
 }: LayoutProps) {
   return (
     <>
-      <nav className="shadow-lg bg-red-600">
-        <div className="max-w-md m-auto p-2 relative  h-16 flex items-center">
+      <nav className="shadow-lg bg-red-600 overflow-hidden">
+        <div className="max-w-md m-auto p-2 relative  h-16 flex items-center space-between">
           {onBack && (
             <button
               onClick={onBack}
@@ -45,6 +47,14 @@ export default function Layout({
           >
             Secret Sint
           </button>
+          {onLogOut && (
+            <button
+              onClick={onLogOut}
+              className="text-yellow-200 ml-auto hover:text-white hover:underline"
+            >
+              Log out
+            </button>
+          )}
         </div>
       </nav>
       <div className="max-w-md m-auto py-8 px-2 flex gap-2 flex-col">

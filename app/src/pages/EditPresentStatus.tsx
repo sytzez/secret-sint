@@ -37,6 +37,7 @@ export default function EditPresentStatus() {
       title="Present status"
       onHome={() => navigate('/groups')}
       onBack={() => navigate(`/groups/${groupId}`)}
+      onLogOut={api.logOut}
     >
       <ErrorText error={loadError} />
       {isLoading && <Loading />}

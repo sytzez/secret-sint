@@ -26,6 +26,7 @@ export default function AssigneeDetails() {
       title="Your assignee"
       onHome={() => navigate('/groups')}
       onBack={() => navigate(`/groups/${groupId}`)}
+      onLogOut={api.logOut}
     >
       <ErrorText error={error} />
       {isLoading && <Loading />}

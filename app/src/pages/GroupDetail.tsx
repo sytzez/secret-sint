@@ -36,6 +36,7 @@ export default function GroupDetail() {
       <Layout
         onHome={() => navigate('/groups')}
         onBack={() => navigate('/groups')}
+        onLogOut={api.logOut}
       >
         <ErrorText error={loadError} />
       </Layout>
@@ -47,6 +48,7 @@ export default function GroupDetail() {
       <Layout
         onHome={() => navigate('/groups')}
         onBack={() => navigate('/groups')}
+        onLogOut={api.logOut}
       >
         <Loading />
       </Layout>
@@ -63,6 +65,7 @@ export default function GroupDetail() {
       title={group.title}
       onHome={() => navigate('/groups')}
       onBack={() => navigate('/groups')}
+      onLogOut={api.logOut}
     >
       {!group.has_started && (
         <Button

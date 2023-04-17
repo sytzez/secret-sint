@@ -28,6 +28,9 @@ export default function createApi(apiParams: ApiParams) {
     logIn: async (request: LogInRequest) => {
       await post('login', { user: request })
     },
+    logOut: async () => {
+      await del('logout')
+    },
     groups: async (): Promise<Group[]> => {
       const response = await get('groups')
       return response.data.map((group: object) => groupSchema.parse(group))

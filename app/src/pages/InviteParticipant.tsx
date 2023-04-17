@@ -26,6 +26,7 @@ export default function InviteParticipant() {
       title="Invite a participant"
       onHome={() => navigate('/groups')}
       onBack={() => navigate(`/groups/${groupId}`)}
+      onLogOut={api.logOut}
     >
       <p className="mb-4 text-white">
         You can invite participants once they have registered with the platform.

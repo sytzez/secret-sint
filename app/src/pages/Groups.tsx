@@ -20,7 +20,11 @@ export default function Groups() {
   useEffect(loadGroups, [])
 
   return (
-    <Layout title="Select a group" onHome={() => navigate('/groups')}>
+    <Layout
+      title="Select a group"
+      onHome={() => navigate('/groups')}
+      onLogOut={api.logOut}
+    >
       <ErrorText error={error} />
       {isLoading && <Loading />}
       {groups && (
