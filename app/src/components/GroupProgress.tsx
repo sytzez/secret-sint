@@ -17,7 +17,7 @@ export default function GroupProgress({ group }: GroupProgressProps) {
         />
         {group.ordered_count! > 0 && ( // We only want to show this stat if at least one person has ordered.
           <ProgressBar
-            label={`${group.delivered_count!} out of ${userCount} Sints have received their presents.`}
+            label={`${group.delivered_count!} out of ${userCount} presents have arrived.`}
             progress={group.delivered_count! / userCount}
           />
         )}
