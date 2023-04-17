@@ -1,5 +1,5 @@
 import SignUp from './pages/SignUp'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import LogIn from './pages/LogIn'
 import Groups from './pages/Groups'
 import NewGroup from './pages/NewGroup'
@@ -9,11 +9,13 @@ import EditWishlist from './pages/EditWishlist'
 import AssigneeDetails from './pages/AssigneeDetails'
 import EditPresentStatus from './pages/EditPresentStatus'
 import Start from './pages/Start'
+import HowItWorks from "./pages/HowItWorks";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Start />} />
+      <Route path="/how-it-works" element={<HowItWorks />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/groups" element={<Groups />} />

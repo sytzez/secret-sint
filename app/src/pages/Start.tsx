@@ -23,14 +23,14 @@ export default function Start() {
         Easily organise Secret Sint groups and keep track of the deliveries.
       </p>
       <Button
-        label="Log in"
+        label="Get started"
         style="primary"
-        onClick={() => navigate('/login')}
+        onClick={() => navigate('/signup')}
       />
       <Button
-        label="Create an account"
+        label="How it works"
         style="secondary"
-        onClick={() => navigate('/signup')}
+        onClick={() => navigate('/how-it-works')}
       />
     </div>
   )

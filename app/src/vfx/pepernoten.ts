@@ -7,7 +7,7 @@ const SIMULTANEOUS_PEPERNOTEN =
 
 const GOLDEN_RATIO = (1 + Math.sqrt(5)) * 0.5
 
-const RANDOMNESS = 0.05
+const RANDOMNESS = 0.01
 
 const PEPERNOOT_PROTOTYPE = (() => {
   const element = document.createElement('DIV')

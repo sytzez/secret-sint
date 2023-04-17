@@ -34,7 +34,7 @@ export default function WishlistForm({
         id="wishlist"
         name="wishlist"
         placeholder="This is your wishlist! Write as much as you like."
-        className="bg-white rounded-3xl p-4 disabled:bg-gray-300 shadow-lg"
+        className="bg-white rounded-3xl p-4 disabled:bg-gray-300 shadow-lg mb-2"
         rows={5}
         defaultValue={value}
         disabled={isLoading}

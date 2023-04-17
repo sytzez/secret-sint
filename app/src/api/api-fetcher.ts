@@ -18,7 +18,7 @@ export const apiFetcher =
       .then((response) => {
         if (authErrorStatusCodes.includes(response.status)) {
           onAuthError()
-          throw new Error('You need to be logged in to do this.')
+          // Intentional fall-through to decode the JSON to get the error message.
         }
         return response.json()
       })
