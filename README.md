@@ -1,6 +1,6 @@
 # Secret Sint
 
-The Dutch version of Secret Santa, allowing users to form groups and track the delivery of their presents.
+The Dutch version of Secret Santa, allowing users to form groups and track the delivery of their presents. [See how it works.](https://secret-sint.vercel.app/how-it-works)
 
 A fully fledged React app backed by a Ruby on Rails API.
 Across the whole stack, the code is well-formatted, well-structured and well-tested, as can been seen in the [code examples](#code-examples-groups).
@@ -70,6 +70,12 @@ Open the app in your browser at http://127.0.0.1:5173/.
 - Rubocop: 0 offenses. ([.rubocop.yml](api/.rubocop.yml)).
 
 ## Screenshots
+![The home screen](app/src/assets/screenshots/home-screen.png)
+![A group ready to assign Sints](app/src/assets/screenshots/assign-secret-sints.png)
+![Editing a wishlist](app/src/assets/screenshots/editing-a-wishlist.png)
+![A group's progress](app/src/assets/screenshots/group-progress.png)
+
+[See more screenshots.](https://secret-sint.vercel.app/how-it-works)
 
 ## Domain model
 
