@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 
-import defaultTheme from 'tailwindcss/defaultTheme'
-
 module.exports = {
   content: [
     './index.html',
@@ -16,7 +14,7 @@ module.exports = {
     },
     screens: {
       xs: '400px',
-      ...defaultTheme.screens,
+      ...require('tailwindcss/defaultTheme').screens,
     },
   },
   plugins: [],
