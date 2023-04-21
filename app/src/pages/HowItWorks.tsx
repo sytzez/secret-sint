@@ -86,7 +86,7 @@ export default function HowItWorks() {
       />
 
       <h2 className="text-white text-3xl drop-shadow-lg">
-        Sit back and follow the group's progress
+        Sit back and follow the group&apos;s progress
       </h2>
       <img
         src={groupProgressImage}
